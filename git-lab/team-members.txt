@@ -1,4 +1,6 @@
 <<<<<<< HEAD
+****ATTENTION GROUP: CHECK UOL EMAIL****
+
 NAME                  GITHUB NAME
 
 Joel Benner           jbenner11
