@@ -1,3 +1,8 @@
+<<<<<<< HEAD
 NAME                  GITHUB NAME
 
 Joel Benner           jbenner11
+=======
+Name:ritesh patel Git: rpatel31
+Name : Ahtif Github: ahtif
+>>>>>>> e410bb8efe9df2f68f3626a7e9542f8f7e4ddec4
