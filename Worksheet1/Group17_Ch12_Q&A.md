@@ -1,7 +1,5 @@
-# Group 17 Questions and Answers
-
-## Software Contracts and Liability
-## By Michael Chun Wai Chiu
+# Software Contracts and Liability Questions and Answers
+## By Michael Chun Wai Chiu - Group 17
 
 **Q1:** Which of the following is a part of the contract for the supply of a bespoke system?
 
