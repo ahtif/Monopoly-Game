@@ -15,7 +15,7 @@
 
 ---
 
-**Q2**The Public Interest Disclosure Act provides that an employee is protected from dismissal if he makes a disclosure that is a:
+**Q2** The Public Interest Disclosure Act provides that an employee is protected from dismissal if he makes a disclosure that is a:
 
 1. public interest disclosure.
 2. protected disclosure.
