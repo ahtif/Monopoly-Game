@@ -48,6 +48,7 @@
 ---
 
 **Q5** Which of the following statements is true?
+
 1. Copyright of a work extends to 30 years after the author dies.
 2. Industries with the same Trade Mark but different classes of products can have the same domain name.
 3. A non-disclosure agreement can be broken.
