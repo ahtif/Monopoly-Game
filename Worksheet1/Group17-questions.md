@@ -73,8 +73,8 @@
 
 **Q2:** Which of the following is the good practice of payment?
 
-1. The client makes the payment accroading to the stage of development the supplier has finished.
-2. The client makes the payment at the very begining and then wait for the supplier produce the software.
+1. The client makes the payment according to the stage of development the supplier has finished.
+2. The client makes the payment at the very beginning and then wait for the supplier produce the software.
 3. The client makes the payment when the supplier has finished the whole software and delivered to client's hand.
 
 **ANSWER:** 1
@@ -96,14 +96,14 @@
 
 1. The client gives out any of the rights in the software.
 2. The extent of the software the customer can use.
-3. Regular incomes from support activities, maintenance and warrenty.
+3. Regular incomes from support activities, maintenance and warranty.
 4. The client runs as many copies of the software as he wishes on computers at specified premises with a site licence.
 
 **ANSWER:** 4
 
 ---
 
-**Q5:** Which of the following is not the safety concern to software engineers accroading to The Health and Safety at Work Art?
+**Q5:** Which of the following is not the safety concern to software engineers according to The Health and Safety at Work Art?
 
 1. Provide enough training, instruction before the software engineers get to work.
 2. Provide a safe system of work.
@@ -172,4 +172,5 @@
 
 
 **ANSWER:** 3
+
 
