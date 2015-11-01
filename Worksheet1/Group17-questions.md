@@ -61,7 +61,7 @@
 
 --------------------------------------------------------------------
 
-**Q1:** Which of the following is a part of the contract for the supply of a bespoke system?
+**Q1:** Which of the following is not a part of the contract for the supply of a bespoke system?
 
 1. A short agreement.
 2. Documentation of the design of the software.
@@ -81,7 +81,7 @@
 
 ---
 
-**Q3:** Which of the following is not the important aspects of a consultancy contract?
+**Q3:** Which of the following is not the important aspect of a consultancy contract?
 
 1. Liability
 2. Details of the members in the consultancy team
@@ -92,7 +92,7 @@
 
 ---
 
-**Q4:** Which of the following is not the software vendor's concerns about licensing?
+**Q4:** Which of the following is not the software vendor's concern about licensing?
 
 1. The client gives out any of the rights in the software.
 2. The extent of the software the customer can use.
