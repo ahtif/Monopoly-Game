@@ -1,3 +1,7 @@
+# Group 7 Questions and Answers
+
+---
+
 # Data Protection, Privacy and Freedom of Information Questions and Answers
 
 ## By Ritesh Patel- Group 17
@@ -10,6 +14,7 @@
 4. Prevent Data theft.
 
 **ANSWER:** 1
+
 ---
 
 **Q2:** A person who has data stored about them is known as:
@@ -19,6 +24,7 @@
  3. Data controller 
 
 **ANSWER:** 2
+
 ---
 
 
@@ -30,6 +36,7 @@
 4. Claim compensation for damages caused by a breach of the act.
 
 **ANSWER:** 2
+
 ---
 
 
@@ -41,6 +48,7 @@
 4. Ensure effective operation of the system.
 
 **ANSWER:** 1
+
 ---
 
 
