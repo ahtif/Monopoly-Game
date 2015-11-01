@@ -15,7 +15,7 @@
 
 ---
 
-**Q2**The Public Interest Disclosure Act provides that an employee is protected from dismissal if he makes a disclosure that is a:
+**Q2** The Public Interest Disclosure Act provides that an employee is protected from dismissal if he makes a disclosure that is a:
 
 1. public interest disclosure.
 2. protected disclosure.
@@ -25,7 +25,7 @@
 
 ---
 
-**Q3**Which of the following statements is not true about patents?
+**Q3** Which of the following statements is not true about patents?
 
 1. Applying for a patent is expensive and requires a significant amount of effort.
 2. An invention cannot be granted a patent if it is new but does not have an inventive step.
@@ -48,6 +48,7 @@
 ---
 
 **Q5** Which of the following statements is true?
+
 1. Copyright of a work extends to 30 years after the author dies.
 2. Industries with the same Trade Mark but different classes of products can have the same domain name.
 3. A non-disclosure agreement can be broken.
