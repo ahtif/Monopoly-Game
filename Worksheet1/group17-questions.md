@@ -4,7 +4,7 @@
 
 **Q1:** What is the purpose of the data protection act?
 
-1. Give individuals the right to know what information is held about them and protect the information. 
+1. Protect personal data stored on computers or in an organised paper filing system.
 2. Protect individuals from being hacked. 
 3. Prevent organisations from storing data on individuals. 
 4. Prevent Data theft.
