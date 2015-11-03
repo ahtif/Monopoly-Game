@@ -1,6 +1,6 @@
 #1 Board Navigation
 
-1.1 [Must] When a player completes a full circuit around the board passing the "Matfair" space they gain 100£ and return to the "GO" space.
+1.1 [Must] When a player completes a full circuit around the board passing the "Mayfair" space they gain £200 and return to the "GO" space.
 
 1.2 [Must] When a player rolls two six sided dice they move the amount of spaces of the two dice added together.
 
