@@ -39,14 +39,5 @@ ID. [Priority] Requirement Description
 6.3 [Could] If a player goes bankrupt, their properties can be bought by other players at the mortgage price by landing on the square
 
 
-Classes:
-
-Board
-
-Player
-
-Square
-
-Property/Utility/Railroads/Chance or Community Chest inherits from Square
-
-[Optional] Random Dice
+#7 Saving and Loading games
+7.1 [Must] the game must be able to be saved, closed, and loaded at a later time
