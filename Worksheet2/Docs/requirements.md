@@ -38,6 +38,8 @@
 
 4.2 [Could] 3 houses = Hotel.
 
+4.3 [Could] Bank only has 32 houses and 12 Hotels
+
 
 #5 Trading Property/Money
 
