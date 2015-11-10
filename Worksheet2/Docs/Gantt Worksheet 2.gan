@@ -4,11 +4,10 @@
         <field id="tpd3" name="Name" width="60" order="0"/>
         <field id="tpd4" name="Begin date" width="16" order="1"/>
         <field id="tpd5" name="End date" width="23" order="2"/>
-        <option id="taskLabelUp" value="resources"/>
     </view>
     <view id="resource-table">
-        <field id="0" name="Name" width="56" order="0"/>
-        <field id="1" name="Default role" width="43" order="1"/>
+        <field id="0" name="Name" width="52" order="0"/>
+        <field id="1" name="Default role" width="47" order="1"/>
     </view>
     <!-- -->
     <calendars>
@@ -59,7 +58,7 @@
             </task>
             <task id="12" name="Format Requirements into Markdown" color="#8cb6ce" meeting="false" start="2015-11-05" duration="1" complete="0" expand="true"/>
         </task>
-        <task id="3" name="Task 3" meeting="false" start="2015-11-03" duration="3" complete="0" expand="true">
+        <task id="3" name="Task 3" meeting="false" start="2015-11-03" duration="6" complete="0" expand="true">
             <depend id="22" type="2" difference="0" hardness="Strong"/>
             <depend id="90" type="2" difference="0" hardness="Strong"/>
             <task id="14" name="Decide on the Classes for the system" color="#8cb6ce" meeting="false" start="2015-11-03" duration="1" complete="0" expand="true">
@@ -68,27 +67,27 @@
             <task id="19" name="Decide on the relationships for the classes" color="#8cb6ce" meeting="false" start="2015-11-04" duration="1" complete="0" expand="true">
                 <depend id="20" type="2" difference="0" hardness="Strong"/>
             </task>
-            <task id="20" name="Create the class diagram" color="#8cb6ce" meeting="false" start="2015-11-05" duration="1" complete="0" expand="true"/>
+            <task id="20" name="Create the class diagram" color="#8cb6ce" meeting="false" start="2015-11-05" duration="4" complete="0" expand="true"/>
         </task>
         <task id="15" name="Task 4" meeting="false" start="2015-11-03" duration="1" complete="0" expand="true">
             <depend id="90" type="2" difference="0" hardness="Strong"/>
             <task id="16" name="Decide Configuration management plan" color="#8cb6ce" meeting="false" start="2015-11-03" duration="1" complete="0" expand="true"/>
             <task id="17" name="Create configuration management document" color="#8cb6ce" meeting="false" start="2015-11-03" duration="1" complete="0" expand="true"/>
         </task>
-        <task id="18" name="Task 5" meeting="false" start="2015-11-03" duration="24" complete="0" expand="true">
+        <task id="18" name="Task 5" meeting="false" start="2015-11-03" duration="27" complete="0" expand="true">
             <depend id="90" type="2" difference="0" hardness="Strong"/>
             <task id="21" name="Create and setup new gradle project" meeting="false" start="2015-11-03" duration="1" complete="0" expand="true"/>
-            <task id="22" name="Create java classes" color="#8cb6ce" meeting="false" start="2015-11-06" duration="10" complete="0" expand="true">
+            <task id="22" name="Create java classes" color="#8cb6ce" meeting="false" start="2015-11-11" duration="10" complete="0" expand="true">
                 <depend id="23" type="2" difference="0" hardness="Strong"/>
                 <depend id="25" type="2" difference="0" hardness="Strong"/>
             </task>
-            <task id="23" name="Add Save/Load" color="#8cb6ce" meeting="false" start="2015-11-20" duration="1" complete="0" expand="true"/>
-            <task id="25" name="Add cucumber to the project" color="#8cb6ce" meeting="false" start="2015-11-20" duration="1" complete="0" expand="true">
+            <task id="23" name="Add Save/Load" color="#8cb6ce" meeting="false" start="2015-11-25" duration="1" complete="0" expand="true"/>
+            <task id="25" name="Add cucumber to the project" color="#8cb6ce" meeting="false" start="2015-11-25" duration="1" complete="0" expand="true">
                 <depend id="26" type="2" difference="0" hardness="Strong"/>
             </task>
-            <task id="26" name="Create test and implement features" color="#8cb6ce" meeting="false" start="2015-11-23" duration="10" complete="0" expand="true"/>
+            <task id="26" name="Create test and implement features" color="#8cb6ce" meeting="false" start="2015-11-26" duration="10" complete="0" expand="true"/>
         </task>
-        <task id="90" name="Project complete" color="#8cb6ce" meeting="true" start="2015-12-07" duration="0" complete="0" expand="true"/>
+        <task id="90" name="Project complete" color="#8cb6ce" meeting="true" start="2015-12-10" duration="0" complete="0" expand="true"/>
     </tasks>
     <resources>
         <resource id="0" name="Ahtif Anwar" function="Default:0" contacts="" phone=""/>
@@ -105,6 +104,7 @@
         <allocation task-id="14" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="16" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="22" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="20" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="8" resource-id="1" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="6" resource-id="1" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="10" resource-id="1" function="Default:0" responsible="true" load="100.0"/>
@@ -124,12 +124,14 @@
         <allocation task-id="17" resource-id="2" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="25" resource-id="2" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="26" resource-id="2" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="20" resource-id="2" function="Default:0" responsible="false" load="100.0"/>
         <allocation task-id="8" resource-id="3" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="6" resource-id="3" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="10" resource-id="3" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="14" resource-id="3" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="16" resource-id="3" function="Default:0" responsible="false" load="100.0"/>
         <allocation task-id="22" resource-id="3" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="20" resource-id="3" function="Default:0" responsible="false" load="100.0"/>
         <allocation task-id="8" resource-id="4" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="6" resource-id="4" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="14" resource-id="4" function="Default:0" responsible="true" load="100.0"/>
@@ -142,6 +144,7 @@
         <allocation task-id="16" resource-id="5" function="Default:0" responsible="false" load="100.0"/>
         <allocation task-id="25" resource-id="5" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="26" resource-id="5" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="20" resource-id="5" function="Default:0" responsible="false" load="100.0"/>
     </allocations>
     <vacations/>
     <taskdisplaycolumns>
