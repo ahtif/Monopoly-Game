@@ -23,6 +23,23 @@ checkstyle {
 	configFile = new File(rootDir, "google_checks.xml")
 }
 
+configurations {
+    cucumberRuntime {
+        extendsFrom testRuntime
+    }
+}
+
+task cucumber() {
+    dependsOn assemble, compileTestJava
+    doLast {
+        javaexec {
+            main = 'cucumber.api.cli.Main'
+            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+            args = ['--plugin', 'pretty', '--glue', 'javatests', 'src/test/resources']
+        }
+    }
+}
+
 // In this section you declare the dependencies for your production and test code
 dependencies {
     // The production code uses the SLF4J logging API at compile time
@@ -33,5 +50,7 @@ dependencies {
     // testCompile dependency to testCompile 'org.testng:testng:6.8.1' and add
     // 'test.useTestNG()' to your build script.
     testCompile 'junit:junit:4.12'
-    
+    testCompile('info.cukes:cucumber-java:1.2.3')
+    testCompile('info.cukes:cucumber-junit:1.2.3')
+    testCompile('junit:junit:4.11')    
 }
