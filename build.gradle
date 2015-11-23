@@ -16,12 +16,9 @@ repositories {
     // Use 'jcenter' for resolving your dependencies.
     // You can declare any Maven/Ivy/file repository here.
     jcenter()
-    MavenCentral()
+    mavenCentral()
 }
 
-checkstyle {
-	configFile = new File(rootDir, "google_checks.xml")
-}
 
 configurations {
     cucumberRuntime {
@@ -53,4 +50,20 @@ dependencies {
     testCompile('info.cukes:cucumber-java:1.2.3')
     testCompile('info.cukes:cucumber-junit:1.2.3')
     testCompile('junit:junit:4.11')    
+}
+configurations {
+  checksytleOverride
+}
+
+dependencies {
+  checksytleOverride('com.puppycrawl.tools:checkstyle:6.11.2')
+}
+
+tasks.withType(Checkstyle) {
+  checkstyleClasspath = project.configurations.checksytleOverride
+}
+
+
+checkstyle {
+	configFile = "./config/checkstyle/google_checks.xml" as File
 }
