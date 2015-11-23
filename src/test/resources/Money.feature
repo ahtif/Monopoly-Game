@@ -4,13 +4,15 @@ Feature: Things dealing with  money
 	Given Player 1 owns Old Kent Road
         And Player 2 lands on Old Kent Road
         Then Player 2 owes Player 1 £2
+	
     Scenario: A player lands on a property with a house
-	Given a player lands on a property with a house
-	Then they should pay the new, higher amount to the owner of the property
+	Given Player 1 has a house on Old Kent Road	
+	When Player 2 lands on Old Kent Road  property
+	Then Player 2 should pay £10 to Player 1
 
     Scenario: A player buys a house
 	Given a player ownes all three properties of a single color
-	And they have enough money for a house
+	When they have enough money for a house
 	Then they may pay the bank to get a house on one property
 
     Scenario: A player wants to buy a hotel
@@ -23,10 +25,10 @@ Feature: Things dealing with  money
 	Then they must mortgage their property in order to pay to owner
 
    Scenario: A player lands on property and cannot afford rent and cannot mortgage anything
-	Given a player cannot afford rent of 100 pounds
-	And cannot mortgage any properties
-	Then they must give all of their money to the owner
-	And the player becomes bankrupt and is out of the game
+	Given Player 1 cannot mortgage any properties
+	When Player 1 cannot aford rent of £100
+	Then they must give all of their money to the owner of the property
+	And the player becomes bankrupt
 
    Scenario: Two players wish to trade properties
 	Given player 1 owns Leicester Square 
@@ -36,9 +38,9 @@ Feature: Things dealing with  money
 
    Scenario: A owned property is bought off another player
 	Given Player 1 owns Bond Street
-	And Player 2 wishes to buy it for £300
+	When Player 2 wishes to buy it for £300
 	And Player 1 agrees
-	Then Player 2 owns Bond Street and player 1 gains £300 
+	Then Player 2 owns Bond Street and Player 1 gains £300 
 
    Scenario: A player goes bankrupt and his properties are up for grabs
 	Given Player 1 goes bankrupt
