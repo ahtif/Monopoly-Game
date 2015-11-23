@@ -2,8 +2,8 @@
 public class Square {
 
 	// Data members
-	private String name;
-	private int location;
+	protected String name;
+	protected int location;
 
 	// Constructors
 	public Square () {
