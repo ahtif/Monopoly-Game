@@ -8,17 +8,20 @@
 
 1.4 [Could] If a player rolls doubles (two of the same number) they move the combined number of spaces and get to roll again.
 
-1.5 [Could] Chance and Community Chest Squares (keep them simple or make them do nothing).
+1.5 [Could] If a player lands on the Community Chest or Chance square they get a reward
 
 1.6 [Could] Roll a double 6 or a double 1 before you can move off of Go.
 
-1.7 [Could] If in Jail, you must remain there for X amount of time.
+1.7 [Could] If in Jail, you must remain there for 3 turns unless a double is rolled.
 
-1.8 [Could] Railroads/ Utility Spaces.
-
-1.9 [Should] Colour code similar properties.
+1.8 [Could] If you land on a Railroad or Utility then you should have the option to purchase it
 
 1.10 [Could] Rolling doubles three times in a row send you to jail
+
+1.11 [Could] A player can pay £50 to get out of jail early
+
+1.12 [Should] A player does not roll doubles within three turns they must pay a £50 fine
+
 
 #2 Buying Property
 
@@ -34,11 +37,9 @@
 
 #4 Houses
 
-4.1 [Could] Players can buy houses to increase the rent on a property. Players are unable to purchase houses if they cannot afford it.
+4.1 [Could] Players can buy houses on properties when they own the matching set of colors as well.
 
-4.2 [Could] 3 houses = Hotel.
-
-4.3 [Could] Bank only has 32 houses and 12 Hotels
+4.2 [Could] If a player buys a fourth house on a property it becomes a hotel
 
 
 #5 Trading Property/Money
