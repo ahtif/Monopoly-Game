@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<section name="Workbench">
-	<section name="org.eclipse.buildship.ui.wizard.project.creation">
-		<item value="true" key="use_default_location"/>
-		<item value="/var/autofs/home/s_home/jb643/co2012-group-17-repo/Worksheet2/group-17-monopoly" key="project_location"/>
-	</section>
-</section>
