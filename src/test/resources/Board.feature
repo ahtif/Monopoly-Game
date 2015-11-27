@@ -31,13 +31,17 @@ Feature: Movements
 	Then Player 1 should move directly to the Jail Square
 	And Player 1 should not collect £200
 
-    (rewrite later) Scenario: A player lands on a chance square
-	Given Player 1 lands on a chance square
-	Then Player 1 should receive a chance card
+    Scenario: A player lands on a chance square
+	Given PLayer 1 is on Old Kent Road
+	When Player 1 rolls a 3 
+	And land on a chance square
+	Then Player 1 gains £100
 
-    (rewrite later) Scenario: A player lands on a community chest square
-	Given Player 1 lands on a community chest square
-	Then Player 1 should receive a community chest card
+    Scenario: A player lands on a community chest square
+	Given Player 1 is on Whitechapel Road
+	When Player 1 rolls an 8
+	And lands on a Community Chest
+	Then Player 1 should gain £50
 
    Scenario: A player is in Jail for 1 turn
 	Given Player 1 is in jail and they have only rolled once
@@ -46,13 +50,22 @@ Feature: Movements
 	Then Player 1 should remain in Jail
 
     Scenario: A player rolls doubles in jail
-	Given Player 2 rolls doubles while in jail
+	Given Player 2 is in Jail
+	When Player 2 rolls doubles
 	Then Player 2 move the rolled number of squares
 		
     Scenario: A player has been in jail for 3 turns
 	Given Player 1 has been in jail for 3 turns
-	When player 1 roll any number
-	Then Player 1should the rolled number of squares
+	And Player one has £1000
+	When player 1 rolls a 4 and a 5
+	Then Player 1 is on Old Kent Road 
+	And Player 1 loses £50 so they have £950 left
+
+    Scenario: A player wishes to leave jail early
+	Given Player 1 has been in jail less then three turns
+	And Player 1 has £100
+	When Player 1 wants to leave
+	Then Player 1 must lose £50 so they have £50
 
     Scenario: A player has rolled doubles 3 times in a row
 	Given Player 1 rolls doubles 3 times in a row
@@ -60,15 +73,23 @@ Feature: Movements
 	And Player 1 should not collect 200 pounds
 
     Scenario: A player lands on a property that is unowned
-	Given Player lands on an unowned property
-	And Player 1 can afford it
-	Then Player 1 are able to buy the property if they wish
+	Given Player 1 lands on an unowned property named Coventry Street
+	And Player 1 has £300
+	When player 1 decides to buy it
+	Then Player 1 has £243 left 
+	And owns the property
+
+    Scenario: A player lands on an unowned property but doesn't want it
+        Given Player lands on an unowned property named Coverntry Street
+	And Player 1 has £300
+	When Player 1 decides that they don't want it
+	Then Coventry Street remains unowned
 
     Scenario: A player lands on a property that is unowned but cannot afford it
-	Given Player 1 lands on an unowned property
+	Given Player 1 lands on an unowned property named Leicester Square
 	And Player 1 cannot afford it
 	Then their turn should end
 
     Scenario: A player lands on an owned property
 	Given Player 1 lands on an owned property
-	Then Player 1 should pay the cost of rent to the player who ownes the property
+	Then Player 1 should pay the cost of rent to the owner of the property
