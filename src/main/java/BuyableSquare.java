@@ -1,7 +1,7 @@
 
 public class BuyableSquare extends Square{
 
-    // Data members
+  // Data members
   protected int cost; 
   protected int rent; 
   protected int multiplier;
@@ -26,7 +26,7 @@ public class BuyableSquare extends Square{
     this.mortgagePrice = mortgagePrice;
   }
 
-    // Instance methods
+  // Instance methods
   public void setOwner(String owner) {
     // Code to set owner's name.
   }
