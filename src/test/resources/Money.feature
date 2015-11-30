@@ -1,5 +1,5 @@
 Feature: Things dealing with  money
-	
+/*	
     Scenario: A player lands on an owned property
 	Given Player 1 owns Old Kent Road
         And Player 2 lands on Old Kent Road
@@ -42,18 +42,18 @@ Feature: Things dealing with  money
 	And Player 1 agrees
 	Then Player 2 owns Bond Street and Player 1 gains £300 
 
-   Scenario: A player goes bankrupt and his properties are up for grabs
-	Given Player 1 goes bankrupt
-	Then the remaining players may bid on Player 1's properties
+        #	Scenario: A player goes bankrupt and his properties are up for grabs
+	#	Given Player 1 goes bankrupt
+	#	Then the remaining players may bid on Player 1's properties
 
-   Scenario: A bankrupt player's property goes unbought
-	Given Picadilly is able to be bid on
-	When no player bids on it
-	Then it goes back to being an unowned square
+	#   Scenario: A bankrupt player's property goes unbought
+		#	Given Picadilly is able to be bid on
+	#	When no player bids on it
+	#	Then it goes back to being an unowned square
 
-    Scenario: A bankrupt player's property is bought
-	Given Picadilly is able to be bid on
-	When Player 1 bids £400
-	And no other player wishes to pay that much
-	Then Player 1 loses £400
-	And Player 1 now ownes Picadilly
+	#    Scenario: A bankrupt player's property is bought
+		#	Given Picadilly is able to be bid on
+		#	When Player 1 bids £400
+		#	And no other player wishes to pay that much
+		#	Then Player 1 loses £400
+		#	And Player 1 now ownes Picadilly

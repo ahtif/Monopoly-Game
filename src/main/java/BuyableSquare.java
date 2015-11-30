@@ -17,8 +17,9 @@ public class BuyableSquare extends Square{
    * @param multiplier the multiplier
    * @param mortgagePrice the mortgage 
    */
-  public BuyableSquare(String name, int location, int cost, 
-      int rent, int multiplier, int mortgagePrice) {
+
+  public BuyableSquare(String name, int location, int cost, int rent,
+      int multiplier, int mortgagePrice) {
     super(name, location);
     this.cost = cost;
     this.rent = rent;
