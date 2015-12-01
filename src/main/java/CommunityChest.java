@@ -6,11 +6,13 @@ public class CommunityChest extends Square {
   // Constructor
   public CommunityChest(String name, int location) {
     super(name, location);
+    // code for generating reward amount.
+    this.reward = 100; // Temporally set at 100
   }
 
   // Instance methods
   public int generateAmount() {
-    return -1; /* amount generated from CommunityChest */
+    return reward; /* amount generated from CommunityChest */
   }
 
 }// End of CommunityChest class
