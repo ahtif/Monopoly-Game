@@ -55,11 +55,15 @@ public class Player {
     return money;
   }
   
+  public void getMoney(int amount) {
+    money = amount;
+  }
+  
   public void addMoney(int amount) {
     this.money += amount;
   }
 
-  public void substractMoney(int amount) {
+  public void subtractMoney(int amount) {
     this.money -= amount;
   }
 
@@ -84,7 +88,7 @@ public class Player {
    * Rent paying.
    */
   public void payRent(int rentAmount, Player receiver) {
-    this.substractMoney(rentAmount);
+    this.subtractMoney(rentAmount);
     receiver.addMoney(rentAmount);
     // N.B. Haven't deal with if the player goes bankrupt.
   }
@@ -103,6 +107,12 @@ public class Player {
     return jail;
   }
   
+  /**
+   * Set Jail.
+   */
+  public void setJail(boolean toggle) {
+    jail = toggle;
+  }
   /**
    * Dice Rolling.
    */
