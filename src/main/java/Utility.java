@@ -2,7 +2,7 @@ public class Utility extends BuyableSquare {
 
   // Constructor
   public Utility(String name, int location, int cost, int rent, int multiplier,
-      int mortgagePrice, String color) {
+      int mortgagePrice) {
     super(name, location, cost, rent, multiplier, mortgagePrice);
   }
 
