@@ -23,7 +23,7 @@ public class Player {
   }
 
   /**
-   * Player values.
+   * Player Constructor with values.
    */
   public Player(String name, String playerPiece) {
     money = 200;
