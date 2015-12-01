@@ -55,7 +55,7 @@ public class Player {
     return money;
   }
   
-  public void getMoney(int amount) {
+  public void setMoney(int amount) {
     money = amount;
   }
   
@@ -74,6 +74,10 @@ public class Player {
 
   public int getDoubles() {
     return doublesRolled; 
+  }
+  
+  public void setDoubles(int amount) {
+    doublesRolled = amount;
   }
   
   public void /*switch with void later: BuyableSquares[]*/ getProperties() {
