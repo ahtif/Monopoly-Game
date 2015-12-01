@@ -25,7 +25,7 @@ public class Property extends BuyableSquare {
   }
   
   public void saleHouse(int amountOfHouses) {
-	numOfHouses -= amountOfHouses;
+    numOfHouses -= amountOfHouses;
   }
 
 }// End of Property class
