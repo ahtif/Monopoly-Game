@@ -7,10 +7,17 @@ public class BuyableSquare extends Square{
   protected int multiplier;
   protected int mortgagePrice;
 
-  // Constructors  
-  /**
-   * Rent paying.
+    
+  /**  
+   * Constructor for buyable square.
+   * @param name the name of the square
+   * @param location the location of the square
+   * @param cost the cost of the square
+   * @param rent the rent amount
+   * @param multiplier the multiplier
+   * @param mortgagePrice the mortgage 
    */
+
   public BuyableSquare(String name, int location, int cost, int rent,
       int multiplier, int mortgagePrice) {
     super(name, location);

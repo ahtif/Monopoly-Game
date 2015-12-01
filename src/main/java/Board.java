@@ -5,7 +5,8 @@ public class Board {
 
   // Constructors
   public Board() {
-    // N.B. Have no idea how to initialise the Board ATM.
+        // N.B. Have no idea how to initialise the Board ATM.
   }
-}
-  // End of Board class
+
+}// End of Board class
+
