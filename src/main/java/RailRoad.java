@@ -1,13 +1,12 @@
 public class RailRoad extends BuyableSquare {
 
   // Data members
-  private String color;
+  //private String color; dont need color
 
   // Constructors
   public RailRoad(String name, int location, int cost, int rent, int multiplier,
-      int mortgagePrice, String color) {
+      int mortgagePrice) {
     super(name, location, cost, rent, multiplier, mortgagePrice);
-    this.color = color;
   }
 
   // Instance methods
@@ -15,8 +14,8 @@ public class RailRoad extends BuyableSquare {
 
   }
 
-  public String getColor() {
+  /*public String getColor() {
     return color;
-  }
+  }*/
 
 }// End of RailRoad class
