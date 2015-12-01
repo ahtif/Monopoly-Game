@@ -1,6 +1,8 @@
-/*import cucumber.api.PendingException;
+/*
+import cucumber.api.PendingException;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
 
@@ -11,9 +13,8 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 */
 
-
 public class Stepdefs {
-/*  remove for testing
+/* / remove for testing
  
   @Before
   public void beforeScenario() {
@@ -34,7 +35,7 @@ public class Stepdefs {
   }
 
   @Given("^Player (\\d+) started on the Go square$")
-  public void player_started_on_the_Go_square(int playerNumber) throws Throwable {
+  public void player_started_on_the_Go_square1(int playerNumber) throws Throwable {
     Player player = Game.players.get(playerNumber);
     player.setPosition(0);
   }
@@ -48,8 +49,9 @@ public class Stepdefs {
   @Then("^Player (\\d+) should be on (\\d+)$")
   public void player_should_be_on_Oxford_Street(int playerNumber, 
   int squareNumber) throws Throwable {
+    Board board = new Board();
     Player player = Game.players.get(playerNumber);
-    assertEquals(player.getPosition(), board.square.get(squareNumber));  pos = 6, sq = 6
+    assertEquals(player.getPosition(), board.square.get(squareNumber));  //pos = 6, sq = 6
   }
   
 //////////////////////////////////////////////////////////////////////////////////
@@ -141,53 +143,58 @@ public class Stepdefs {
 
   @Then("^Player (\\d+) should not collect (\\d+)$")
   public void player_should_not_collect(int playerNumber, int goMoney, 
-  int current_money) throws Throwable {
+  int old_money) throws Throwable {
     Player player = Game.players.get(playerNumber);
     int money = player.getMoney();
-    assertFalse(money, money+goMoney);
+    assertNotEquals(money, old_money + goMoney); // make sure no collection
 
   }
 
 //////////////////////////////////////////////////////////////////////////////////
  
   @Given("^PLayer (\\d+) is on Old Kent Road$")
-  public void player_is_on_old_Kent_Road(int arg1) throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
-    throw new PendingException();
+  public void player_is_on_old_Kent_Road(int playerNumber) throws Throwable {
+    Player player = Game.players.get(playerNumber);
+    player.setPosition(19);
   }
 
-  @When("^Player (\\d+) rolls a (\\d+)$")
-  public void player_rolls_a(int arg1, int arg2) throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
-    throw new PendingException();
+  @When("^Player (\\d+) rolls a (\\d+) and a (\\d+)$")
+  public void player_rolls_a(int playerNumber, int dice1, int dice2) throws Throwable {
+    Player player = Game.players.get(playerNumber);
+    player.move(dice1, dice2);
   }
 
+  //what to do here?
   @When("^land on a chance square$")
   public void land_on_a_chance_square() throws Throwable {
     // Write code here that turns the phrase above into concrete actions
     throw new PendingException();
   }
 
-  @Then("^Player (\\d+) gains £(\\d+)$")
-  public void player_gains(int arg1, int arg2) throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
-    throw new PendingException();
+  @Then("^Player (\\d+) gains$")
+  public void player_gains(int playerNumber) throws Throwable {
+    Player player = Game.players.get(playerNumber);
+    Chance chance = new Chance(player.getName(), 22);
+    int old_money = player.getMoney();
+    int chanceAmount = chance.generateAmount();
+    assertNotEquals(player.getMoney(), old_money);
   }
 
 //////////////////////////////////////////////////////////////////////////////////
  
   @Given("^Player (\\d+) is on Whitechapel Road$")
-  public void player_is_on_Whitechapel_Road(int arg1) throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
-    throw new PendingException();
+  public void player_is_on_Whitechapel_Road(int playerNumber) throws Throwable {
+    Player player = Game.players.get(playerNumber);
+    player.setPosition(9);
   }
 
-  @When("^Player (\\d+) rolls an (\\d+)$")
-  public void player_rolls_an(int arg1, int arg2) throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
-    throw new PendingException();
+  @When("^Player (\\d+) rolls a (\\d+) and a (\\d+)$")
+  public void player_rolls_an(int playerNumber, int dice1, int dice2) throws Throwable {
+    Player player = Game.players.get(playerNumber);
+    player.move(dice1, dice2);
   }
 
+  // What to put here?
   @When("^lands on a Community Chest$")
   public void lands_on_a_Community_Chest() throws Throwable {
     // Write code here that turns the phrase above into concrete actions
@@ -196,16 +203,21 @@ public class Stepdefs {
 
   @Then("^Player (\\d+) should gain £(\\d+)$")
   public void player_should_gain(int arg1, int arg2) throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
-    throw new PendingException();
+    Player player = Game.players.get(playerNumber);
+    CommunityChest chest = new CommunityChest(player.getName(), 22);
+    int old_money = player.getMoney();
+    int chanceAmount = chest.generateAmount();
+    assertNotEquals(player.getMoney(), old_money);
   }
 
 //////////////////////////////////////////////////////////////////////////////////
  
+  //TODO need remaining jail time to be figured out 
+  
   @Given("^Player (\\d+) is in jail and they have only rolled once$")
-  public void player_is_in_jail_and_they_have_only_rolled_once(int arg1) throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
-    throw new PendingException();
+  public void player_is_in_jail_and_they_have_only_rolled_once(int playerNumber) throws Throwable {
+    Player player = Game.players.get(playerNumber);
+    
   }
 
   @When("^Player (\\d+) rolls$")
@@ -229,28 +241,34 @@ public class Stepdefs {
 //////////////////////////////////////////////////////////////////////////////////
  
   @Given("^Player (\\d+) is in Jail$")
-  public void player_is_in_Jail(int arg1) throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
-    throw new PendingException();
+  public void player_is_in_Jail(int playerNumber) throws Throwable {
+    Player player = Game.players.get(playerNumber);
+    player.setJail(true);
   }
   
   @When("^Player (\\d+) rolls doubles$")
-  public void player_rolls_doubles(int arg1) throws Throwable {
+  public void player_rolls_doubles(int playerNumber, int dice1, int dice2) throws Throwable {
     // Write code here that turns the phrase above into concrete actions
     throw new PendingException();
   }
 
   @Then("^Player (\\d+) move the rolled number of squares$")
-  public void player_move_the_rolled_number_of_squares(int arg1) throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
-    throw new PendingException();
+  public void player_move_the_rolled_number_of_squares(int playerNumber, 
+  int dice1, int dice2) throws Throwable {
+    Player player = Game.players.get(playerNumber);
+    int old_position = player.getPosition();
+    player.move(dice1, dice2);
+    int new_position = player.getPosition();
+    assertNotEquals(old_position, new_position);
   }
 
 //////////////////////////////////////////////////////////////////////////////////
-
+  //TODO need remaining jail time to be figured out
   @Given("^Player (\\d+) has been in jail for (\\d+) turns$")
-  public void player_has_been_in_jail_for_turns(int arg1, int arg2) throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
+  public void player_has_been_in_jail_for_turns(int playerNumber, int jail_time) throws Throwable {
+    Player player = Game.players.get(playerNumber);
+    player.setJail(true);
+    
     throw new PendingException();
   }
 
@@ -281,47 +299,65 @@ public class Stepdefs {
 //////////////////////////////////////////////////////////////////////////////////
  
   @Given("^Player (\\d+) has been in jail less then three turns$")
-  public void player_has_been_in_jail_less_then_three_turns(int arg1) throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
-    throw new PendingException();
+  public void player_has_been_in_jail_less_then_three_turns(int playerNumber) throws Throwable {
+    Player player = Game.players.get(playerNumber);
+    player.setJail(true);
   }
 
-  @Given("^Player (\\d+) has £(\\d+)$")
-  public void player_has(int arg1, int arg2) throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
-    throw new PendingException();
+  @Given("^Player (\\d+) has$")
+  public void player_has(int playerNumber, int totalmoney) throws Throwable {
+    Player player = Game.players.get(playerNumber);
+    player.setMoney(1000);
   }
 
+  //What to do here?
   @When("^Player (\\d+) wants to leave$")
   public void player_wants_to_leave(int arg1) throws Throwable {
     // Write code here that turns the phrase above into concrete actions
     throw new PendingException();
   }
 
-  @Then("^Player (\\d+) must lose £(\\d+) so they have £(\\d+)$")
-  public void player_must_lose_so_they_have(int arg1, int arg2, int arg3) throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
-    throw new PendingException();
+  @Then("^Player (\\d+) must lose (\\d+) so they have (\\d+)$")
+  public void player_must_lose_so_they_have(int playerNumber, int arg2, int arg3) throws Throwable {
+    Player player = Game.players.get(playerNumber);
+    int money = 1000;
+    player.subtractMoney(50);
+    player.setJail(false);
+    assertEquals(money-50, player.getMoney());
   }
 
 //////////////////////////////////////////////////////////////////////////////////
 
-  @Given("^Player (\\d+) rolls doubles (\\d+) times in a row$")
-  public void player_rolls_doubles_times_in_a_row(int arg1, int arg2) throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
-    throw new PendingException();
+  @Given("^Player (\\d+) rolls doubles three times in a row$")
+  public void player_rolls_doubles_times_in_a_row(int playerNumber) throws Throwable {
+    Player player = Game.players.get(playerNumber);
+    player.setDoubles(3);
   }
 
   @Then("^Player (\\d+) should go to jail$")
-  public void player_should_go_to_jail(int arg1) throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
-    throw new PendingException();
+  public void player_should_go_to_jail(int playerNumber) throws Throwable {
+    Player player = Game.players.get(playerNumber);
+    GoToJail goToJail = new GoToJail();
+    goToJail.sentToJail(player);
+    boolean inJail = player.jailCheck();
+    assertEquals(injail, true);
   }
 
-  @Then("^Player (\\d+) should not collect (\\d+) pounds$")
-  public void player_should_not_collect_pounds(int arg1, int arg2) throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
-    throw new PendingException();
+///////////////////////////////////////////////////////////////////////////////////
+  
+  @Given("^Player (\\d+) rolls doubles three times in a row$")
+  public void player_rolls_doubles_time_in_a_row(int playerNumber) throws Throwable {
+    Player player = Game.players.get(playerNumber);
+    player.setDoubles(3);
+    player.setMoney(1000);
+    GoToJail goToJail = new GoToJail();
+    goToJail.sentToJail(player);
+  }
+  
+  @Then("^Player (\\d+) should not gain money and they have (\\d+)$")
+  public void player_should_not_collect_pounds(int playerNumber, int money ) throws Throwable {
+    Player player = Game.players.get(playerNumber);
+    assertEquals(1000, player.getMoney());
   }
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -580,7 +616,8 @@ public class Stepdefs {
     // Write code here that turns the phrase above into concrete actions
     throw new PendingException();
   }
-  remove for testing */ 
+  //remove for testing 
+   */
 }
 
 
