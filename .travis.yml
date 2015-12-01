@@ -1,12 +1,5 @@
 language: java
-<<<<<<< HEAD
-=======
-jdk: 
-- oraclejdk7
->>>>>>> master
 
 -jdk:
  - oraclejdk7
  - openjdk7
-
-
