@@ -35,6 +35,10 @@ public class Player {
   }
 
   // Instance methods
+  public void setPosition(int newPosition) {
+    position = newPosition;
+  }
+  
   public int getPosition() {
     return position;
   }
@@ -47,6 +51,10 @@ public class Player {
     return name;
   }
 
+  public int getMoney() {
+    return money;
+  }
+  
   public void addMoney(int amount) {
     this.money += amount;
   }
@@ -60,6 +68,10 @@ public class Player {
     money += 200;
   }
 
+  public int getDoubles() {
+    return doublesRolled; 
+  }
+  
   public void /*switch with void later: BuyableSquares[]*/ getProperties() {
     //return; //temporary to allow for program to compile
   }
@@ -85,6 +97,13 @@ public class Player {
   }
 
   /**
+   * Jail check.
+   */
+  public boolean jailCheck() {
+    return jail;
+  }
+  
+  /**
    * Dice Rolling.
    */
   public void move(int dice1, int dice2) {
@@ -101,7 +120,7 @@ public class Player {
 
       jail = true;
     } else {
-      position = dice1 + dice2;
+      position += dice1 + dice2;
     }
   }
 
