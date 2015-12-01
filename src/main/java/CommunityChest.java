@@ -4,6 +4,9 @@ public class CommunityChest extends Square {
   private int reward;
 
   // Constructor
+  /**
+   * CommunityChest Constructor.
+   */
   public CommunityChest(String name, int location) {
     super(name, location);
     // code for generating reward amount.
