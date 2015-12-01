@@ -4,9 +4,6 @@ public class Jail extends Square {
   private int numOfPlayerInJail;
   // Need a map to remember number of rounds left for each player in jail.
   
-  /**
-   * Jail Constructor
-   */
   public Jail() {
     this.numOfPlayerInJail = 0;
   }
