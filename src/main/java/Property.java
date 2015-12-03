@@ -12,12 +12,7 @@ public class Property extends BuyableSquare {
       int mortgagePrice, String color) {
     super(name, location, cost, rent, multiplier, mortgagePrice);
     this.color = color;
-<<<<<<< Updated upstream
     this.numOfHouses = 0;
-=======
-    
-
->>>>>>> Stashed changes
   }
 
   // Instance methods
