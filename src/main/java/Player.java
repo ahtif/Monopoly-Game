@@ -80,7 +80,7 @@ public class Player {
     doublesRolled = amount;
   }
   
-  public void /*switch with void later: BuyableSquares[]*/ getProperties() {
+  public void /*switch void later with: BuyableSquares[]*/ getProperties() {
     //return; //temporary to allow for program to compile
   }
 
@@ -116,6 +116,17 @@ public class Player {
    */
   public void setJail(boolean toggle) {
     jail = toggle;
+  }
+  
+  /**
+   * Trade Property.
+   */
+  public void tradeProperty(Property propertyGiven, Property propertyReceived, Player otherPlayer) {
+    
+  }
+  
+  public void sellProperty(Property property, int moneyOffered, Player receiver) {
+      
   }
   /**
    * Dice Rolling.

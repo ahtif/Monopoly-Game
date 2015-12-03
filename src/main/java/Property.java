@@ -12,16 +12,30 @@ public class Property extends BuyableSquare {
       int mortgagePrice, String color) {
     super(name, location, cost, rent, multiplier, mortgagePrice);
     this.color = color;
+<<<<<<< Updated upstream
     this.numOfHouses = 0;
+=======
+    
+
+>>>>>>> Stashed changes
   }
 
   // Instance methods
   public String getColor() {
     return color;
   }
-
+  
+  public int getNumOfHouses() {
+    return numOfHouses;
+  }
+  
+  /**
+   * add Houses.
+   */
   public void addHouse(int amountOfHouses) {
-    numOfHouses += amountOfHouses;
+    if (numOfHouses + amountOfHouses <= 5) {
+      numOfHouses += amountOfHouses;
+    }
   }
   
   public void saleHouse(int amountOfHouses) {
