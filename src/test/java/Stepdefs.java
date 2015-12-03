@@ -14,7 +14,7 @@ import cucumber.api.java.en.When;
 */
 
 public class Stepdefs {
-/* / remove for testing
+/* // remove for testing
  
   @Before
   public void beforeScenario() {
@@ -34,6 +34,7 @@ public class Stepdefs {
     persistence.removeGame(persistence.findGameByName("test-board-3"));
   }
 
+  // PLayer Movement
   @Given("^Player (\\d+) started on the Go square$")
   public void player_started_on_the_Go_square1(int playerNumber) throws Throwable {
     Player player = Game.players.get(playerNumber);
@@ -47,7 +48,7 @@ public class Stepdefs {
   }  
   
   @Then("^Player (\\d+) should be on (\\d+)$")
-  public void player_should_be_on_Oxford_Street(int playerNumber, 
+  public void player_should_be_on_Euston_Road(int playerNumber, 
   int squareNumber) throws Throwable {
     Board board = new Board();
     Player player = Game.players.get(playerNumber);
@@ -56,6 +57,7 @@ public class Stepdefs {
   
 //////////////////////////////////////////////////////////////////////////////////
 
+  //roll doubles, check position works
   @Given("^Player (\\d+) started on the Go square$")
   public void player_started_on_the_Go_square(int playerNumber) throws Throwable {
     Player player = Game.players.get(playerNumber);
@@ -73,7 +75,20 @@ public class Stepdefs {
   int squareNumber) throws Throwable {
     assertEquals(player.getPosition(), squareNumber);
   }
+//////////////////////////////////////////////////////////////////////////////////
+  //check doubles counter works
+  @Given("^Player (\\d+) started on the Go square$")
+  public void player_starts_on_the_Go_square(int playerNumber) throws Throwable {
+    Player player = Game.players.get(playerNumber);
+    player.setPosition(0);
+  }
 
+  @When("^a (\\d+) and a (\\d+) are rolled and are the same number$")
+  public void a_double_roll(int dice1, int dice2) throws Throwable {
+    Player player = Game.players.get(playerNumber);
+    player.move(dice1, dice2);
+  }
+  
   @Then("^it should be Player (\\d+) turn again$")
   public void it_should_be_Player_turn_again(int playerNumber) throws Throwable {
     Player player = Game.players.get(playerNumber);
@@ -82,7 +97,7 @@ public class Stepdefs {
   }
 
 //////////////////////////////////////////////////////////////////////////////////
- 
+ // check visit jail
   @Given("^Player (\\d+) has not been sent to Jail$")
   public void player_has_not_been_sent_to_Jail(int playerNumber) throws Throwable {
     Player player = Game.players.get(playerNumber);
@@ -102,7 +117,7 @@ public class Stepdefs {
   
 
 ////////////////////////////////////////////////////////////////////////////////// 
- 
+  // pass go check
   @Given("^Player (\\d+) starts their turn before the Go square$")
   public void player_starts_their_turn_before_the_Go_square(int playerNumber) throws Throwable {
     Player player = Game.players.get(playerNumber);
@@ -125,7 +140,7 @@ public class Stepdefs {
   }
 
 //////////////////////////////////////////////////////////////////////////////////
-   //HELP//
+   //addMoneyHELP//
  
   
   @Given("^Player (\\d+) lands on the Go To Jail square$")
@@ -151,9 +166,9 @@ public class Stepdefs {
   }
 
 //////////////////////////////////////////////////////////////////////////////////
- 
-  @Given("^PLayer (\\d+) is on Old Kent Road$")
-  public void player_is_on_old_Kent_Road(int playerNumber) throws Throwable {
+  // chance check
+  @Given("^PLayer (\\d+) is on Vine Street$")
+  public void player_is_on_vine_street(int playerNumber) throws Throwable {
     Player player = Game.players.get(playerNumber);
     player.setPosition(19);
   }
@@ -181,9 +196,9 @@ public class Stepdefs {
   }
 
 //////////////////////////////////////////////////////////////////////////////////
- 
-  @Given("^Player (\\d+) is on Whitechapel Road$")
-  public void player_is_on_Whitechapel_Road(int playerNumber) throws Throwable {
+  // Community chest check
+  @Given("^Player (\\d+) is on Pentonville Road$")
+  public void player_is_on_Pentonville_Road(int playerNumber) throws Throwable {
     Player player = Game.players.get(playerNumber);
     player.setPosition(9);
   }
@@ -239,7 +254,7 @@ public class Stepdefs {
   }
 
 //////////////////////////////////////////////////////////////////////////////////
- 
+  // doubles roll in jail
   @Given("^Player (\\d+) is in Jail$")
   public void player_is_in_Jail(int playerNumber) throws Throwable {
     Player player = Game.players.get(playerNumber);
@@ -297,7 +312,7 @@ public class Stepdefs {
   }
 
 //////////////////////////////////////////////////////////////////////////////////
- 
+  //pay 50 to leave jail
   @Given("^Player (\\d+) has been in jail less then three turns$")
   public void player_has_been_in_jail_less_then_three_turns(int playerNumber) throws Throwable {
     Player player = Game.players.get(playerNumber);
@@ -316,7 +331,8 @@ public class Stepdefs {
     // Write code here that turns the phrase above into concrete actions
     throw new PendingException();
   }
-
+ 
+  //need function for paying out of jail
   @Then("^Player (\\d+) must lose (\\d+) so they have (\\d+)$")
   public void player_must_lose_so_they_have(int playerNumber, int arg2, int arg3) throws Throwable {
     Player player = Game.players.get(playerNumber);
@@ -327,7 +343,7 @@ public class Stepdefs {
   }
 
 //////////////////////////////////////////////////////////////////////////////////
-
+  // roll double 3 times in a row to jail
   @Given("^Player (\\d+) rolls doubles three times in a row$")
   public void player_rolls_doubles_times_in_a_row(int playerNumber) throws Throwable {
     Player player = Game.players.get(playerNumber);
@@ -344,7 +360,7 @@ public class Stepdefs {
   }
 
 ///////////////////////////////////////////////////////////////////////////////////
-  
+  //roll double 3 times in a row do not collect
   @Given("^Player (\\d+) rolls doubles three times in a row$")
   public void player_rolls_doubles_time_in_a_row(int playerNumber) throws Throwable {
     Player player = Game.players.get(playerNumber);
@@ -357,121 +373,133 @@ public class Stepdefs {
   @Then("^Player (\\d+) should not gain money and they have (\\d+)$")
   public void player_should_not_collect_pounds(int playerNumber, int money ) throws Throwable {
     Player player = Game.players.get(playerNumber);
-    assertEquals(1000, player.getMoney());
+    assertEquals(money, player.getMoney());
   }
 
 //////////////////////////////////////////////////////////////////////////////////
- 
-  @Given("^Player (\\d+) lands on an unowned property named Coventry Street$")
-  public void player_lands_on_an_unowned_property_named_Coventry_Street(int arg1) throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
-    throw new PendingException();
+  // player buys unowned property and get it (no money)
+  @Given("^Player (\\d+) lands on an unowned property named Whitechapel Road$")
+  public void player_lands_on_an_unowned_property_named_whitechapel_road
+  (int playerNumber) throws Throwable {
+    Player player = Game.players.get(playerNumber);
+    player.setPosition(3);
+    player.setMoney(300);
   }
 
+  // ? What here
   @When("^player (\\d+) decides to buy it$")
-  public void player_decides_to_buy_it(int arg1) throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
+  public void player_decides_to_buy_it(int playerNumber) throws Throwable {
     throw new PendingException();
   }
 
-  @Then("^Player (\\d+) has £(\\d+) left$")
-  public void player_has_left(int arg1, int arg2) throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
-    throw new PendingException();
-  }
-
+  //set owner should check money
   @Then("^owns the property$")
-  public void owns_the_property() throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
-    throw new PendingException();
+  public void owns_the_property(int playerNumber) throws Throwable {
+    Player player = Game.players.get(playerNumber);
+    player.setMoney(1000);
+    Property whitechapel_road = new Property("Whitechapel Road", 3, 60, 4, 0, 50, "red");
+    whitechapel_road.setOwner(player.getName()); 
+    assertEquals(whitechapel_road.getOwner(), player.getName());
   }
 
 //////////////////////////////////////////////////////////////////////////////////
- 
-  @Given("^Player lands on an unowned property named Coverntry Street$")
-  public void player_lands_on_an_unowned_property_named_Coverntry_Street() throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
-    throw new PendingException();
+  // don't buy property but land on it
+  @Given("^Player (\\d+) lands on an unowned property named Coventry Street$")
+  public void player_lands_on_an_unowned_property_named_Coverntry_Street
+  (int playerNumber) throws Throwable {
+    Player player = Game.players.get(playerNumber);
+    player.setPosition(27);
   }
 
   @When("^Player (\\d+) decides that they don't want it$")
   public void player_decides_that_they_don_t_want_it(int arg1) throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
     throw new PendingException();
   }
 
   @Then("^Coventry Street remains unowned$")
   public void coventry_Street_remains_unowned() throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
-    throw new PendingException();
+    Property coventry_street = new Property("Coventry Street", 27, 260, 22, 0, 150, "yellow");
+    assertEquals(coventry_street.getOwner(), "");
   }
 
 //////////////////////////////////////////////////////////////////////////////////
- 
+  // player can't afford property
   @Given("^Player (\\d+) lands on an unowned property named Leicester Square$")
-  public void player_lands_on_unowned_property_Leicester_Square(int arg1) throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
-    throw new PendingException();
+  public void player_lands_on_unowned_property_Leicester_Square(int playerNumber) throws Throwable {
+    Player player = Game.players.get(playerNumber);
+    player.setPosition(26);
   }
 
   @Given("^Player (\\d+) cannot afford it$")
-  public void player_cannot_afford_it(int arg1) throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
-    throw new PendingException();
+  public void player_cannot_afford_it(int playerNumber) throws Throwable {
+    Player player = Game.players.get(playerNumber);
+    player.setMoney(200);
+    Property leicester_square = new Property("Leicester Square", 26, 260, 22, 0, 150, "yellow");
+    leicester_square.setOwner(player.getName());
   }
 
-  @Then("^their turn should end$")
-  public void their_turn_should_end() throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
-    throw new PendingException();
+  @Then("^Square shoulf remain unowned$")
+  public void square_remains_unowned (int playerNumber) throws Throwable {
+    Player player = Game.players.get(playerNumber);
+    Property leicester_square = new Property("Leicester Square", 26, 260, 22, 0, 150, "yellow");
+    leicester_square.setOwner(player.getName());
+    assertEquals(leicester_square.getOwner(), "");
   }
 
 //////////////////////////////////////////////////////////////////////////////////
- 
+  // pay rent receiver gets money
   @Given("^Player (\\d+) lands on an owned property$")
-  public void player_lands_on_an_owned_property(int arg1) throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
-    throw new PendingException();
+  public void player_lands_on_an_owned_property(int playerNumber) throws Throwable {
+    Player player1 = Game.players.get(playerNumber);
+    player1.setPosition(26);
   }
 
-  @Then("^Player (\\d+) should pay the cost of rent to the owner of the property$")
-  public void player_should_pay_the_cost_of_rent_to_the_owner_of_the_property(int arg1)
-      throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
-    throw new PendingException();
+  @Then("^Player (\\d+) should pay rent to player (\\d+)$")
+  public void player_should_pay_rent_to_player 
+  (int playerNumber1, int playerNumber2) throws Throwable {
+    Player player1 = Game.players.get(playerNumber1);
+    Player player2 = Game.players.get(playerNumber2);
+    Property leicester_square = new Property("Leicester Square", 26, 260, 22, 0, 150, "yellow");
+    leicester_square.setOwner(player2.getName());
+    int old_money = player2.getMoney();
+    player1.payRent(leicester_square.getRent(), player2);
+    assertEquals(old_money, old_money + leicester_square.getRent());
+  }
+  
+//////////////////////////////////////////////////////////////////////////////////
+  // pay rent payer loses money
+  @Given("^Player (\\d+) lands on an owned property$")
+  public void player_lands_on_owned_property(int playerNumber) throws Throwable {
+    Player player1 = Game.players.get(playerNumber);
+    player1.setPosition(26);
+  }
+
+  @Then("^Player (\\d+) should pay rent to player (\\d+)$")
+  public void player_should_lose_money_to_player 
+  (int playerNumber1, int playerNumber2) throws Throwable {
+    Player player1 = Game.players.get(playerNumber1);
+    Player player2 = Game.players.get(playerNumber2);
+    Property leicester_square = new Property("Leicester Square", 26, 260, 22, 0, 150, "yellow");
+    leicester_square.setOwner(player2.getName());
+    int old_money = player1.getMoney();
+    player1.payRent(leicester_square.getRent(), player2);
+    assertEquals(old_money, old_money - leicester_square.getRent());
   }
 
 //////////////////////////////////////////////////////////////////////////////////
- 
-  @Given("^Player (\\d+) owns Old Kent Road$")
-  public void player_owns_Old_Kent_Road(int arg1) throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
-    throw new PendingException();
-  }
-
-  @Given("^Player (\\d+) lands on Old Kent Road$")
-  public void player_lands_on_Old_Kent_Road(int arg1) throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
-    throw new PendingException();
-  }
-
-  @Then("^Player (\\d+) owes Player (\\d+) £(\\d+)$")
-  public void player_owes_Player(int arg1, int arg2, int arg3) throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
-    throw new PendingException();
-  }
-
-//////////////////////////////////////////////////////////////////////////////////
- 
+  //TODO need to finish houses function first
+  // check if house increases rent
   @Given("^Player (\\d+) has a house on Old Kent Road$")
-  public void player_has_a_house_on_Old_Kent_Road(int arg1) throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
+  public void player_has_a_house_on_Old_Kent_Road
+  (int playerNumber) throws Throwable {
+    Player player = Game.players.get(playerNumber);    
+    Property old_kent_road = new Property("Old Kent Road", 1, 60, 2, 1, 50, "red");
     throw new PendingException();
   }
 
   @When("^Player (\\d+) lands on Old Kent Road  property$")
-  public void player_lands_on_Old_Kent_Road_property(int arg1) throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
+  public void player_lands_on_Old_Kent_Road_property(int playerNumber) throws Throwable {
+    Player player = Game.players.get(playerNumber);
     throw new PendingException();
   }
 
@@ -482,7 +510,7 @@ public class Stepdefs {
   }
 
 //////////////////////////////////////////////////////////////////////////////////
- 
+  //TODO need to see how code will work
   @Given("^a player ownes all three properties of a single color$")
   public void player_ownes_all_three_properties_of_a_single_color() throws Throwable {
     // Write code here that turns the phrase above into concrete actions
@@ -502,62 +530,102 @@ public class Stepdefs {
   }
 
 ///////////////////////////////////////////////////////////////////////////////////
- 
-  @Given("^a player already has (\\d+) houses on Regent Street$")
+  //check hotel  is 5 houses
+  @Given("^a player (\\d+) already has four houses on Regent Street$")
   public void player_already_has_houses_on_Regent_Street(int arg1) throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
-    throw new PendingException();
+    Player player = Game.players.get(playerNumber);    
+    Property regent_street = new Property("Regent Street", 31, 300, 26, 0, 200, "green");
   }
 
-  @Then("^they may purchase a hotel on the property for £(\\d+)$")
-  public void they_may_purchase_a_hotel_on_the_property_for(int arg1) throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
-    throw new PendingException();
+  @Then("^player (\\d+) may purchase a hotel on the property$")
+  public void they_may_purchase_a_hotel_on_the_property_for
+  (int playerNumber) throws Throwable {
+    Player player = Game.players.get(playerNumber);    
+    Property regent_street = new Property("Regent Street", 31, 300, 26, 0, 200, "green");
+    regent_street.addHouse(4);
+    regent_street.addHouse(1);
+    assertEquals(regent_street.getNumOfHouses(), 5);
+  }
+
+////addMoney///////////////////////////////////////////////////////////////////////////////
+  
+  @Given("^a player (\\d+) already has four houses on Regent Street$")
+  public void player_already_has_five_houses_on_Regent_Street(int arg1) throws Throwable {
+    Player player = Game.players.get(playerNumber);    
+    Property regent_street = new Property("Regent Street", 31, 300, 26, 0, 200, "green");
+  }
+
+  @Then("^player (\\d+) may not purchase a hotel on the property$")
+  public void they_may_not_purchase_a_hotel_on_the_property_for(int playerNumber) throws Throwable {
+    Player player = Game.players.get(playerNumber);    
+    Property regent_street = new Property("Regent Street", 31, 300, 26, 0, 200, "green");
+    regent_street.addHouse(4);
+    regent_street.addHouse(1);
+    regent_street.addHouse(1);
+    assertEquals(regent_street.getNumOfHouses(), 5);
   }
 
 //////////////////////////////////////////////////////////////////////////////////
- 
-  @Given("^a player has £(\\d+) and lands on a square in which the rent is £(\\d+)$")
-  public void player_has_and_lands_on_a_square_in_which_the_rent_is(int arg1,
-      int arg2) throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
-    throw new PendingException();
+  //check if owner changes in mortgage
+  @Given("^player (\\d+) lands on Mayfair(\\d+)$")
+  public void player_has_and_lands_on_a_square_owned_by(int playerNumber1,
+  int playerMoney, int playerNumber2) throws Throwable {
+    Player player1 = Game.players.get(playerNumber1);
+    Player player2 = Game.players.get(playerNumber2);    
+    player1.setMoney(20);
+    player1.setPosition(39);
+    Property mayfair = new Property("Mayfair", 39, 400, 50, 0, 200, "purple");
+    mayfair.setOwner(player2.getName());
   }
   
-  @Given("^they have a property or a combination of properties that add up to £(\\d+)$")
-  public void they_have_a_property_or_a_combination_of_properties_that_add_up_to(int arg1)
-      throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
+  //What to do here?
+  @Given("^player (\\d+) cannot afford rent$")
+  public void player_cannot_afford_rent$(int playerNumber) throws Throwable {
     throw new PendingException();
+
   }
 
-  @Then("^they must mortgage their property in order to pay to owner$")
-  public void they_must_mortgage_their_property_in_order_to_pay_to_owner() throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
-    throw new PendingException();
+  @Then("^player (\\d+) must mortgage their property in order to pay to player (\\d+)$")
+  public void they_must_mortgage_their_property_in_order_to_pay(int playerNumber1,
+      int playerNumber2) throws Throwable {
+    Player player1 = Game.players.get(playerNumber1);
+    Player player2 = Game.players.get(playerNumber2);
+    Property bow_street = new Property("Bow Street", 16, 180, 14, 0, 90, "orange");
+    bow_street.setOwner(player1.getName());
+    bow_street.MortgageSquare(player1);
+    assertEquals(bow_street.getOwner(), "");
   }
 
 //////////////////////////////////////////////////////////////////////////////////
- 
-  @Given("^Player (\\d+) cannot mortgage any properties$")
-  public void player_cannot_mortgage_any_properties(int arg1) throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
-    throw new PendingException();
+  // Bankrupt
+  @Given("^Player (\\d+) does not own any properties$")
+  public void player_does_not_own_any_properties
+  (int playerNumber) throws Throwable {
+    Player player1 = Game.players.get(playerNumber);
   }
 
-  @When("^Player (\\d+) cannot aford rent of £(\\d+)$")
-  public void player_cannot_afford_rent_of(int arg1, int arg2) throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
-    throw new PendingException();
+  @When("^Player (\\d+) cannot afford to pay rent to player (\\d+)$")
+  public void player_cannot_afford_to_pay_rent_to_player
+  (int playerNumber1, int playerNumber2) throws Throwable {
+    Player player1 = Game.players.get(playerNumber1);
+    Player player2 = Game.players.get(playerNumber2);
+    player1.setMoney(30);
+    Property mayfair = new Property("Mayfair", 39, 400, 50, 0, 200, "purple");
+    mayfair.setOwner(player2.getName());
   }
 
-  @Then("^they must give all of their money to the owner of the property$")
-  public void they_must_give_all_of_their_money_to_the_owner_of_the_property() throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
-    throw new PendingException();
+  @Then("^player (\\d+) must give all of their money to player (\\d+)$")
+  public void they_must_give_all_of_their_money_to_player(int playerNumber1, 
+  int playerNumber2) throws Throwable {
+    Player player1 = Game.players.get(playerNumber1);
+    Player player2 = Game.players.get(playerNumber2);
+    player2.setMoney(500);
+    player1.payRent(50, player2);
+    assertEquals(player2.getMoney(), 530);
   }
 
-  @Then("^the player becomes bankrupt$")
+  //TODO no code to account for bankruptcy
+  @Then("^player (\\d+) becomes bankrupt$")
   public void the_player_becomes_bankrupt() throws Throwable {
     // Write code here that turns the phrase above into concrete actions
     throw new PendingException();
@@ -566,17 +634,20 @@ public class Stepdefs {
 //////////////////////////////////////////////////////////////////////////////////
  
   @Given("^player (\\d+) owns Leicester Square$")
-  public void player_owns_Leicester_Square(int arg1) throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
-    throw new PendingException();
+  public void player_owns_Leicester_Square(int playerNumber1) throws Throwable {
+    Player player1 = Game.players.get(playerNumber1);
+    Property leicester_square = new Property("Leicester Square", 26, 260, 22, 0, 150, "yellow");
+    leicester_square.setOwner(player1.getName());
   }
 
   @Given("^player (\\d+) owns Pall Mall$")
-  public void player_owns_Pall_Mall(int arg1) throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
-    throw new PendingException();
+  public void player_owns_Pall_Mall(int playerNumber2) throws Throwable {
+    Player player2 = Game.players.get(playerNumber2);
+    Property pall_mall= new Property("Pall Mall", 11, 140, 10, 0, 70, "pink");
+    pall_mall.setOwner(player2.getName());
   }
 
+  //??
   @Given("^both players wish to trade properties$")
   public void both_players_wish_to_trade_properties() throws Throwable {
     // Write code here that turns the phrase above into concrete actions
@@ -584,26 +655,35 @@ public class Stepdefs {
   }
 
   @Then("^player (\\d+) now owns Pall Mall and player (\\d+) now owns Leicester Square$")
-  public void player_now_owns_Pall_Mall_and_player_now_owns_Leicester_Square(int arg1,
-      int arg2) throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
-    throw new PendingException();
+  public void player_now_owns_Pall_Mall_and_player_now_owns_Leicester_Square(int playerNumber1,
+  int playerNumber2) throws Throwable {
+    Player player1 = Game.players.get(playerNumber1);
+    Player player2 = Game.players.get(playerNumber2);
+    Property leicester_square = new Property("Leicester Square", 26, 260, 22, 0, 150, "yellow");
+    Property pall_mall= new Property("Pall Mall", 11, 140, 10, 0, 70, "pink");
+    player1.tradeProperty(leicester_square, pall_mall, player2);
+    assertEquals(pall_mall.getOwner(), player1.getName());
   }
 
 //////////////////////////////////////////////////////////////////////////////////
 
   @Given("^Player (\\d+) owns Bond Street$")
-  public void player_owns_Bond_Street(int arg1) throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
-    throw new PendingException();
+  public void player_owns_Bond_Street(int playerNumber1) throws Throwable {
+    Player player1 = Game.players.get(playerNumber1);
+    player1.setMoney(100);
+    Property bond_street= new Property("Bond Street", 34, 320, 28, 0, 200, "green");
+    bond_street.setOwner(player1.getName());
+    
   }
 
-  @When("^Player (\\d+) wishes to buy it for £(\\d+)$")
-  public void player_wishes_to_buy_it_for(int arg1, int arg2) throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
-    throw new PendingException();
+  //??
+  @When("^Player (\\d+) wishes to buy it(\\d+)$")
+  public void player_wishes_to_buy_it(int playerNumber2) throws Throwable {
+    Player player2 = Game.players.get(playerNumber2);
+    player2.setMoney(1000);
   }
 
+  //??
   @When("^Player (\\d+) agrees$")
   public void player_agrees(int arg1) throws Throwable {
     // Write code here that turns the phrase above into concrete actions
@@ -611,13 +691,50 @@ public class Stepdefs {
   }
 
   @Then("^Player (\\d+) owns Bond Street and Player (\\d+) gains £(\\d+)$")
-  public void player_owns_Bond_Street_and_Player_gains(int arg1, int arg2,
-      int arg3) throws Throwable {
+  public void player_owns_Bond_Street_and_Player_gains(int playerNumber1, 
+  int playerNumber2) throws Throwable {
+    Player player1 = Game.players.get(playerNumber1);
+    Player player2 = Game.players.get(playerNumber2);
+    Property bond_street= new Property("Bond Street", 34, 320, 28, 0, 200, "green");
+    player1.sellProperty(bond_street, 500, player2);
+    assertEquals(player1.getMoney(), 600);
+  }
+  
+//////////////////////////////////////////////////////////////////////////////////
+
+  @Given("^Player (\\d+) owns Bond street$")
+  public void player_owns_Bond_street(int playerNumber1) throws Throwable {
+    Player player1 = Game.players.get(playerNumber1);
+    Property bond_street= new Property("Bond Street", 34, 320, 28, 0, 200, "green");
+    bond_street.setOwner(player1.getName());
+
+  }
+
+  //??
+  @When("^Player (\\d+) wishes to buy property(\\d+)$")
+  public void player_wishes_to_buy_property(int playerNumber2) throws Throwable {
+    Player player2 = Game.players.get(playerNumber2);
+    player2.setMoney(1000);
+  }
+
+  //??
+  @When("^Player (\\d+) agrees to$")
+  public void player_agrees_to(int arg1) throws Throwable {
     // Write code here that turns the phrase above into concrete actions
     throw new PendingException();
   }
-  //remove for testing 
-   */
+
+  @Then("^Player (\\d+) owns Bond Street and Player (\\d+) gains £(\\d+)$")
+  public void player_owns_Bond_Street_and_Player_gain(int playerNumber1, 
+  int playerNumber2) throws Throwable {
+    Player player1 = Game.players.get(playerNumber1);
+    Player player2 = Game.players.get(playerNumber2);
+    Property bond_street= new Property("Bond Street", 34, 320, 28, 0, 200, "green");
+    player1.sellProperty(bond_street, 500, player2);
+    assertEquals(bond_street.getOwner(), player2.getName());
+}
+ */ //remove for testing 
+   
 }
 
 

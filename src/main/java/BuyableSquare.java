@@ -6,6 +6,7 @@ public class BuyableSquare extends Square{
   protected int rent; 
   protected int multiplier;
   protected int mortgagePrice;
+  protected String owner;
 
     
   /**  
@@ -25,11 +26,14 @@ public class BuyableSquare extends Square{
     this.rent = rent;
     this.multiplier = multiplier;
     this.mortgagePrice = mortgagePrice;
+    owner = "";
   }
 
   // Instance methods
-  public void setOwner(String owner) {
-    // Code to set owner's name.
+  
+  //needs to check if player has enough money 
+  public void setOwner(String ownerName) {
+    owner = ownerName;
   }
 
   public String getOwner() {
@@ -44,8 +48,21 @@ public class BuyableSquare extends Square{
     return cost;
   }
 
+  public int getRent() {
+    return rent;
+  }
+  
   public int getMortgage() {
     return mortgagePrice;
+  }
+  
+  /**
+   * addMoneyMortgage Square.
+   */
+  public void mortgageSquare(Player player) {
+    int mortgagePrice = getMortgage();
+    player.addMoney(mortgagePrice);
+    owner = "";
   }
 
 }// End of BuyableSquare class

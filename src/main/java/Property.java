@@ -19,9 +19,18 @@ public class Property extends BuyableSquare {
   public String getColor() {
     return color;
   }
-
+  
+  public int getNumOfHouses() {
+    return numOfHouses;
+  }
+  
+  /**
+   * add Houses.
+   */
   public void addHouse(int amountOfHouses) {
-    numOfHouses += amountOfHouses;
+    if (numOfHouses + amountOfHouses <= 5) {
+      numOfHouses += amountOfHouses;
+    }
   }
   
   public void saleHouse(int amountOfHouses) {
