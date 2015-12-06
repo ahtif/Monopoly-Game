@@ -4,6 +4,7 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
 import cucumber.api.PendingException;
+
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
@@ -14,7 +15,6 @@ import cucumber.api.java.en.When;
 public class Stepdefs {
  // remove for testing
 
-  Board testBoard;
   Game testGame;
 
 
@@ -23,51 +23,75 @@ public class Stepdefs {
    */ 
   @Before 
   public void beforeScenario() {
-    testBoard = new Board();
     testGame = new Game();
-    testGame.players.put(1, new Player(1, testBoard.square.get(0)));
-    testGame.players.put(2, new Player(2, testBoard.square.get(0)));
-    persistence.persistGame(testGame);
+  //  testGame.players.put(1, new Player(1, testBoard.square.get(0)));
+   // testGame.players.put(2, new Player(2, testBoard.square.get(0)));
+//   persistence.persistGame(testGame);
   }
   /** Always executed after a step definition.
    */
   @After
   public void afterScenario() {
-    Board testGame = persistence.findGameByName("test-game-1");
+ /*   Board testGame = persistence.findGameByName("test-game-1");
     persistence.removeGame(testBoard);
     persistence.removeGame(persistence.findGameByName("test-board-2"));
-    persistence.removeGame(persistence.findGameByName("test-board-3"));
+    persistence.removeGame(persistence.findGameByName("test-board-3"));*/
   }
 
   // PLayer Movement
-  @Given("^Player (\\d+) started on the Go square$")
-  public void player_started_on_the_Go_square1(int playerNumber) throws Throwable {
-    Player player = testGame.players.get(playerNumber);
-    player.setPosition(0);
+  /**
+   * Set the player to start on the given square name.
+   * @param playerName The player's piece.
+   * @param squareName The square to start on.
+   * @throws Throwable .
+   */
+  @Given("^Player (.*) started on the (.*) square$")
+  public void player_started_on(String playerName, String squareName) throws Throwable {
+    Player player  = new Player(Board.Counters.valueOf(playerName.toUpperCase()));
+    testGame.addPlayer(player);
+    player.setPosition(testGame.board.getSquareByName(squareName));
   }
-
-  @When("^a (\\d+) and a (\\d+) is rolled$")
-  public void number_is_rolled(int dice1, int dice2) throws Throwable { // should be 6
-    Player player = testGame.players.get(playerNumber);
-    player.move(dice1, dice2);
+  
+  @When("^Player (.*) rolls a (\\d+) and a (\\d+)$")
+  public void player_rolls(String playerName, int dice1, int dice2) throws Throwable {
+    Player player = testGame.getPlayer(Board.Counters.valueOf(playerName.toUpperCase()));
+    testGame.peformActionsAfterDiceRoll(player, dice1, dice2);
+  }
+  
+  /**
+   * Make sure the player is on a given square.
+   * @param playerName The player name
+   * @param squareName The square name
+   * @throws Throwable .
+   */
+  @Then("^Player (.*) should be on (.*)$")
+  public void player_should_be_on(String playerName, String squareName) throws Throwable {
+    Player player = testGame.getPlayer(Board.Counters.valueOf(playerName.toUpperCase()));  
+    Square square = testGame.board.getSquareByName(squareName);
+    assertEquals(player.position, square);
   }  
   
-  @Then("^Player (\\d+) should be on (\\d+)$")
-  public void player_should_be_on_Euston_Road(int playerNumber, 
-        int squareNumber) throws Throwable {
-    Board board = new Board();
-    Player player = testGame.players.get(playerNumber);
-    assertEquals(player.getPosition(), board.square.get(squareNumber));  //pos = 6, sq = 6
+  @Then("^Player (.*) is in Jail$")
+  public void player_Thimble_is_in_Jail(String playerName) throws Throwable {
+    Player player = testGame.getPlayer(Board.Counters.valueOf(playerName.toUpperCase()));
+    assertTrue(player.jail);
   }
   
-//////////////////////////////////////////////////////////////////////////////////
-
-  //roll doubles, check position works
-  @Given("^Player (\\d+) started on the Go square$")
-  public void player_started_on_the_Go_square(int playerNumber) throws Throwable {
-    Player player = testGame.players.get(playerNumber);
-    player.setPosition(0);
+  /**
+   * Checks that the player gains a given amount
+   * @param playerName The player's name.
+   * @param amt Amount to gain.
+   * @throws Throwable .
+   */
+  @Then("^Player (.*) should gain (\\d+)$")
+  public void player_collect(String playerName, int amt) throws Throwable {
+    Player player = testGame.getPlayer(Board.Counters.valueOf(playerName.toUpperCase()));  
+    int oldMoney = player.getMoney();
+    player.addMoney(amt);
+    assertEquals(oldMoney + amt, player.getMoney()); 
   }
+  
+/* 
 
   @When("^a (\\d+) and a (\\d+) are rolled and are the same number$")
   public void double_is_rolled(int dice1, int dice2) throws Throwable {
@@ -77,7 +101,7 @@ public class Stepdefs {
 
   @Then("^Player (\\d+) should be on (\\d+)$")
   public void player_should_be_on_oxford_Street(int playerNumber, 
-  int squareNumber) throws Throwable {
+      int squareNumber) throws Throwable {
     assertEquals(player.getPosition(), squareNumber);
   }
 //////////////////////////////////////////////////////////////////////////////////
@@ -89,7 +113,7 @@ public class Stepdefs {
   }
 
   @When("^a (\\d+) and a (\\d+) are rolled and are the same number$")
-  public void a_double_roll(int dice1, int dice2) throws Throwable {
+  public void double_roll(int dice1, int dice2) throws Throwable {
     Player player = testGame.players.get(playerNumber);
     player.move(dice1, dice2);
   }
@@ -123,6 +147,7 @@ public class Stepdefs {
 
 ////////////////////////////////////////////////////////////////////////////////// 
   // pass go check
+  
   @Given("^Player (\\d+) starts their turn before the Go square$")
   public void player_starts_their_turn_before_the_Go_square(int playerNumber) throws Throwable {
     Player player = testGame.players.get(playerNumber);
@@ -136,14 +161,6 @@ public class Stepdefs {
     player.move(3, 2);
   }
 
-  @Then("^Player (\\d+) collect £(\\d+)$")
-  public void player_collect(int arg1, int playerNumber) throws Throwable {
-    Player player = testGame.players.get(playerNumber);
-    int old_money = player.getMoney();
-    player.passGo();
-    assertEquals(old_money+200, player.getMoney()); //check that player gained £200 
-  }
-
 //////////////////////////////////////////////////////////////////////////////////
    //addMoneyHELP//
  
@@ -153,17 +170,18 @@ public class Stepdefs {
     Player player = testGame.players.get(playerNumber);
     player.setPosition(30);
   }
-
+ 
   @Then("^Player (\\d+) should move directly to the Jail Square$")
   public void player_should_move_directly_to_the_Jail_Square(int playerNumber) throws Throwable {
     Player player = testGame.players.get(playerNumber);
     Board board = new Board();
     //board.GoToJail.sentToJail(player);
   }
+  
 
   @Then("^Player (\\d+) should not collect (\\d+)$")
   public void player_should_not_collect(int playerNumber, int goMoney, 
-  int old_money) throws Throwable {
+      int oldMoney) throws Throwable {
     Player player = testGame.players.get(playerNumber);
     int money = player.getMoney();
     assertNotEquals(money, old_money + goMoney); // make sure no collection
@@ -190,12 +208,13 @@ public class Stepdefs {
     // Write code here that turns the phrase above into concrete actions
     throw new PendingException();
   }
-
+  
+ 
   @Then("^Player (\\d+) gains$")
   public void player_gains(int playerNumber) throws Throwable {
     Player player = testGame.players.get(playerNumber);
     Chance chance = new Chance(player.getName(), 22);
-    int old_money = player.getMoney();
+    int oldMoney = player.getMoney();
     int chanceAmount = chance.generateAmount();
     assertNotEquals(player.getMoney(), old_money);
   }
@@ -220,12 +239,13 @@ public class Stepdefs {
     // Write code here that turns the phrase above into concrete actions
     throw new PendingException();
   }
-
+  
+ 
   @Then("^Player (\\d+) should gain £(\\d+)$")
   public void player_should_gain(int arg1, int arg2) throws Throwable {
     Player player = testGame.players.get(playerNumber);
     CommunityChest chest = new CommunityChest(player.getName(), 22);
-    int old_money = player.getMoney();
+    int oldMoney = player.getMoney();
     int chanceAmount = chest.generateAmount();
     assertNotEquals(player.getMoney(), old_money);
   }
@@ -271,14 +291,15 @@ public class Stepdefs {
     // Write code here that turns the phrase above into concrete actions
     throw new PendingException();
   }
-
+  
+ 
   @Then("^Player (\\d+) move the rolled number of squares$")
   public void player_move_the_rolled_number_of_squares(int playerNumber, 
-  int dice1, int dice2) throws Throwable {
+      int dice1, int dice2) throws Throwable {
     Player player = testGame.players.get(playerNumber);
-    int old_position = player.getPosition();
+    int oldPosition = player.getPosition();
     player.move(dice1, dice2);
-    int new_position = player.getPosition();
+    int newPosition = player.getPosition();
     assertNotEquals(old_position, new_position);
   }
 
@@ -414,7 +435,7 @@ public class Stepdefs {
   (int playerNumber) throws Throwable {
     Player player = testGame.players.get(playerNumber);
     player.setPosition(27);
-  }
+  }+
 
   @When("^Player (\\d+) decides that they don't want it$")
   public void player_decides_that_they_don_t_want_it(int arg1) throws Throwable {
@@ -478,7 +499,7 @@ public class Stepdefs {
     Player player1 = testGame.players.get(playerNumber);
     player1.setPosition(26);
   }
-
++
   @Then("^Player (\\d+) should pay rent to player (\\d+)$")
   public void player_should_lose_money_to_player 
   (int playerNumber1, int playerNumber2) throws Throwable {
@@ -569,7 +590,7 @@ public class Stepdefs {
     regent_street.addHouse(1);
     assertEquals(regent_street.getNumOfHouses(), 5);
   }
-
++
 //////////////////////////////////////////////////////////////////////////////////
   //check if owner changes in mortgage
   @Given("^player (\\d+) lands on Mayfair(\\d+)$")
@@ -739,6 +760,8 @@ public class Stepdefs {
     assertEquals(bond_street.getOwner(), player2.getName());
 }
   //remove for testing 
+   
+   */
    
 }
 

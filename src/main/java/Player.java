@@ -2,7 +2,7 @@ public class Player {
 
   // Data Members
   private int money;
-  private String name;
+  //private String name;
   Board.Counters playerPiece;
   Square position;
   boolean jail;
@@ -14,7 +14,7 @@ public class Player {
    */
   public Player() {
     money = 200;
-    name = "";
+  //  name = "";
     playerPiece = null;
     position = null;
     jail = false;
@@ -24,9 +24,9 @@ public class Player {
   /**
    * Player Constructor with values.
    */
-  public Player(String name, Board.Counters playerPiece) {
+  public Player(Board.Counters playerPiece) {
     money = 200;
-    this.name = name;
+  //  this.name = name;
     this.playerPiece = playerPiece;
     position = null;
     jail = false;
@@ -42,13 +42,13 @@ public class Player {
     return position;
   }
 
-  public void setName(String newName) {
+/*  public void setName(String newName) {
     this.name = newName;
   }
 
   public String getName() {
     return name;
-  }
+  }*/
 
   public int getMoney() {
     return money;
@@ -67,7 +67,6 @@ public class Player {
   }
 
   public void passGo() {
-    // Assume passGo will give 200.
     money += 200;
   }
 

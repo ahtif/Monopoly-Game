@@ -1,7 +1,6 @@
 import java.util.HashMap;
 import java.util.Map;
 
-
 public class Game {
 
 
@@ -29,11 +28,11 @@ public class Game {
         this.board.getDestinationSquare(player.position, die1 + die2);
 
       // Is there a teleport happening.
-    if (locationToMoveplayerTo == this.board.getSquareByName("Go to Jail")) {
-      locationToMoveplayerTo = this.board.getSquareByName("Visiting Jail");
+    if (locationToMoveplayerTo == this.board.getSquareByName("Go To Jail")) {
+      locationToMoveplayerTo = this.board.getSquareByName("Jail");
       player.jail = true;
     }
-
+    
     player.setPosition(locationToMoveplayerTo);
   }
 }

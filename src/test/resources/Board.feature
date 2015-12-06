@@ -1,35 +1,32 @@
 Feature: Movements
 
-    Scenario: Dice roll
-	Given Player 1 rolls two dice
-	When Player 1 rolls a 3 and a 5
-	Then Player 1 should move 8 squares
-
-    Scenario: A player rolls a 6
-    Given Player 1 started on the Go square
-	When a 6 is rolled
-	Then Player 1 should be on Oxford Street
+    Scenario: A player can make a single move
+   		Given Player Boot started on the Bow Street square
+		When Player Boot rolls a 2 and a 1
+		Then Player Boot should be on Vine Street
 
     Scenario: A player rolls doubles
-	Given Player 2 started on the Go square
-	When Player 2 rolls a 3 and a 3
-	Then Player 2 should end up on Oxford Street
-	And it should be Player 2s turn again
+		Given Player Thimble started on the Go square
+		When Player Thimble rolls a 2 and a 2
+    		And Player Thimble rolls a 1 and a 3
+    	Then Player Thimble should be on Chance1
+   
+	Scenario: A player lands on the Go To Jail square
+		Given Player Car started on the Fleet Street square
+        When Player Car rolls a 5 and a 2
+        Then Player Car should be on Jail
+        	And Player Car is in Jail
+        	
+    Scenario: A player passes Go
+		Given Player Hat started on the Park Lane square
+		When Player Hat rolls a 2 and a 3
+		Then Player Hat should be on Community Chest1
+			And Player Hat should gain 200
    
     Scenario: A player moves onto Jail but is not in Jail
-	Given Player 1 has not been sent to Jail
-	When PLayer 1 land on the Jail Square
-	Then Player 1 may leave on their next turn
-
-    Scenario: A player passes Go
-	Given Player 2 starts their turn before the Go square
-	When Player 2 lands on the Go square
-	Then Player 2 collect 200
-
-    Scenario: A player lands on the Go To Jail square
-    Given Player 1 lands on the Go To Jail square
-	Then Player 1 should move directly to the Jail Square
-	And Player 1 should not collect 200
+		Given Player 1 has not been sent to Jail
+		When PLayer 1 land on the Jail Square
+		Then Player 1 may leave on their next turn
 
     Scenario: A player lands on a chance square
 	Given PLayer 1 is on Old Kent Road
