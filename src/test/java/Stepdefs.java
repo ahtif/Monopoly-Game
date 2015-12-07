@@ -43,7 +43,6 @@ public class Stepdefs {
    * Set the player to start on the given square name.
    * @param playerName The player's piece.
    * @param squareName The square to start on.
-   * @throws Throwable .
    */
   @Given("^Player (.*) started on the (.*) square$")
   public void player_started_on(String playerName, String squareName) throws Throwable {
@@ -62,7 +61,6 @@ public class Stepdefs {
    * Make sure the player is on a given square.
    * @param playerName The player name
    * @param squareName The square name
-   * @throws Throwable .
    */
   @Then("^Player (.*) should be on (.*)$")
   public void player_should_be_on(String playerName, String squareName) throws Throwable {
@@ -72,24 +70,59 @@ public class Stepdefs {
   }  
   
   @Then("^Player (.*) is in Jail$")
-  public void player_Thimble_is_in_Jail(String playerName) throws Throwable {
+  public void player_is_in_Jail(String playerName) throws Throwable {
     Player player = testGame.getPlayer(Board.Counters.valueOf(playerName.toUpperCase()));
     assertTrue(player.jail);
   }
   
+  @Then("^Player (.*) is not in Jail$")
+  public void player_is_not_in_Jail(String playerName) throws Throwable {
+    Player player = testGame.getPlayer(Board.Counters.valueOf(playerName.toUpperCase()));
+    assertFalse(player.jail);
+  }
+  
   /**
-   * Checks that the player gains a given amount
+   * Checks that the player gains money for passing GO.
    * @param playerName The player's name.
    * @param amt Amount to gain.
-   * @throws Throwable .
    */
-  @Then("^Player (.*) should gain (\\d+)$")
-  public void player_collect(String playerName, int amt) throws Throwable {
+  @Then("^Player (.*) should gain (\\d+) for passing Go$")
+  public void player_pass_go(String playerName, int amt) throws Throwable {
     Player player = testGame.getPlayer(Board.Counters.valueOf(playerName.toUpperCase()));  
     int oldMoney = player.getMoney();
-    player.addMoney(amt);
+    player.passGo();
     assertEquals(oldMoney + amt, player.getMoney()); 
   }
+  
+  /**
+   * Checks the player gains the correct amount for landing on a chance.
+   * @param playerName The player's name.
+   * @param amt Amount to gain.
+   * @param chanceSquare The chance square to land on.
+   */
+  @Then("^Player (.*) should gain (\\d+) for landing on (.*)$")
+  public void gain_on_chance(String playerName, int amt, String chanceSquare) throws Throwable {
+    Player player = testGame.getPlayer(Board.Counters.valueOf(playerName.toUpperCase()));  
+    int oldMoney = player.getMoney();
+    Chance chance = (Chance) testGame.board.getSquareByName(chanceSquare);
+    player.addMoney(chance.getAmount());
+    assertEquals(oldMoney + amt, player.getMoney()); 
+  } 
+  
+  /**
+   * Checks the player gains the correct amount for landing on a chance.
+   * @param playerName The player's name.
+   * @param amt Amount to gain.
+   * @param chanceSquare The chance square to land on.
+   */
+  @Then("^Player (.*) should lose (\\d+) for landing on (.*)$")
+  public void landing_on_chance(String playerName, int amt, String chanceSquare) throws Throwable {
+    Player player = testGame.getPlayer(Board.Counters.valueOf(playerName.toUpperCase()));  
+    int oldMoney = player.getMoney();
+    Chance chance = (Chance) testGame.board.getSquareByName(chanceSquare);
+    player.addMoney(chance.getAmount());
+    assertEquals(oldMoney - amt, player.getMoney()); 
+  }   
   
 /* 
 
