@@ -3,16 +3,12 @@ public class Player {
   // Data Members
   private int money;
   //private String name;
-<<<<<<< HEAD
-  private Board.Counters playerPiece;
+
+  public Board.Counters playerPiece;
   private Square position;
-  private boolean jail;
-=======
-  Board.Counters playerPiece;
-  Square position;
+  public boolean jail;
   int id;
-  boolean jail;
->>>>>>> f0bc8758f2707901096cf4290341faea856bf98c
+
   private int doublesRolled;
     
   // Constructors

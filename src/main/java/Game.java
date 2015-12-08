@@ -4,9 +4,9 @@ import java.util.Map;
 public class Game {
 
 
-  private Board board = new Board();
+  Board board = new Board();
 
-  private HashMap<Board.Counters, Player> players = new HashMap<>();
+  Map<Board.Counters, Player> players = new HashMap<>();
     
   public void addPlayer(Player player) {
     players.put(player.playerPiece, player);
@@ -25,12 +25,12 @@ public class Game {
   public void peformActionsAfterDiceRoll(Player player, int die1, int die2) {
 
     Square locationToMoveplayerTo = 
-        this.board.getDestinationSquare(player.position, die1 + die2);
+        this.board.getDestinationSquare(player.getPosition(), die1 + die2);
 
       // Is there a teleport happening.
     if (locationToMoveplayerTo == this.board.getSquareByName("Go To Jail")) {
       locationToMoveplayerTo = this.board.getSquareByName("Jail");
-      player.jail = true;
+      player.setJail(true);
     }
     
     player.setPosition(locationToMoveplayerTo);
