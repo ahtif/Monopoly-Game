@@ -4,9 +4,9 @@ import java.util.Map;
 public class Game {
 
 
-  Board board = new Board();
+  private Board board = new Board();
 
-  Map<Board.Counters, Player> players = new HashMap<>();
+  private HashMap<Board.Counters, Player> players = new HashMap<>();
     
   public void addPlayer(Player player) {
     players.put(player.playerPiece, player);

@@ -3,9 +3,9 @@ public class Player {
   // Data Members
   private int money;
   //private String name;
-  Board.Counters playerPiece;
-  Square position;
-  boolean jail;
+  private Board.Counters playerPiece;
+  private Square position;
+  private boolean jail;
   private int doublesRolled;
     
   // Constructors
