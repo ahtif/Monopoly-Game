@@ -5,6 +5,7 @@ public class Player {
   //private String name;
   Board.Counters playerPiece;
   Square position;
+  int id;
   boolean jail;
   private int doublesRolled;
     
@@ -40,6 +41,20 @@ public class Player {
   
   public Square getPosition() {
     return position;
+  }
+  
+  public String getPlayerPiece(){
+    String str = "";
+    switch(this.playerPiece){
+	    case DOG: str= "Dog"; break;
+	    case SHIP: str=  "Ship"; break;
+	    case CAR: str=  "Car"; break;
+	    case HAT: str=  "Hat"; break;
+	    case THIMBLE: str=  "Thimble"; break;
+	    case BOOT: str=  "Boot"; break;
+	    default: str=  ""; break;
+    }
+    return str;
   }
 
 /*  public void setName(String newName) {

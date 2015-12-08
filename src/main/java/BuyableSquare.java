@@ -32,8 +32,8 @@ public class BuyableSquare extends Square{
   // Instance methods
   
   //needs to check if player has enough money 
-  public void setOwner(String ownerName) {
-    owner = ownerName;
+  public void setOwner(Player player) {
+    owner = player.getPlayerPiece();
   }
 
   public String getOwner() {
