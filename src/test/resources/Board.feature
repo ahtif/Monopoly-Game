@@ -51,58 +51,58 @@ Feature: Movements
 			And Player Thimble should lose 100 for landing on Chance2
 
     Scenario: A player lands on a community chest square
-	Given Player 1 is on Whitechapel Road
-	When Player 1 rolls an 8
+	Given Player Ship is on Whitechapel Road
+	When Player Ship rolls an 8
 	And lands on a Community Chest
-	Then Player 1 should gain 50
+	Then Player Ship should gain 50
 
    Scenario: A player is in Jail for 1 turn
-	Given Player 1 is in jail and they have only rolled once
-	When Player 1 rolls
-	And the dice do not show the same number
-	Then Player 1 should remain in Jail
+	Given Player Dog is in jail and they have only rolled once
+	When Player Dog rolls
+	And the dice does not show the same number
+	Then Player Dog should remain in Jail
 
     Scenario: A player rolls doubles in jail
-	Given Player 2 is currently in Jail
-	When Player 2 rolls doubles
-	Then Player 2 move the rolled number of squares
+	Given Player Dog is currently in Jail
+	When Player Dog rolls doubles
+	Then Player Dog move the rolled number of squares
 		
     Scenario: A player has been in jail for 3 turns
-	Given Player 1 has been in jail for 3 turns
-	And Player one has 1000
-	When player 1 rolls a 4 and a 5
-	Then Player 1 is on Old Kent Road 
-	And Player 1 loses 50 so they have 950 left
+	Given Player Boot has been in jail for 3 turns
+	And Player Boot has 1000
+	When player Boot rolls a 4 and a 5
+	Then Player Boot is on Old Kent Road 
+	And Player Boot loses 50 so they have 950 left
 
     Scenario: A player wishes to leave jail early
-	Given Player 1 has been in jail less then three turns
-	And Player 1 has 100
-	When Player 1 wants to leave
-	Then Player 1 must lose 50 so they have 50
+	Given Player Ship has been in jail less then three turns
+	And Player Ship has 100
+	When Player Ship wants to leave
+	Then Player Ship must lose 50 so they have 50
 
     Scenario: A player has rolled doubles 3 times in a row
-	Given Player 1 rolls doubles 3 times in a row
-	Then Player 1 should go to jail
-	And Player 1 should not collect 200 pounds
+	Given Player Thimble rolls doubles 3 times in a row
+	Then Player Thimble should go to jail
+	And Player Thimble should not collect 200 pounds
 
     Scenario: A player lands on a property that is unowned
-	Given Player 1 lands on an unowned property named Coventry Street
-	And Player 1 has 300
-	When player 1 decides to buy it
-	Then Player 1 has 243 left 
+	Given Player Car lands on an unowned property named Coventry Street
+	And Player Car has 300
+	When player Car decides to buy it
+	Then Player Car has 243 left 
 	And owns the property
 
     Scenario: A player lands on an unowned property but doesn't want it
     Given Player lands on an unowned property named Coverntry Street
-	And Player 1 has 300
-	When Player 1 decides that they do not want it
+	And Player Car has 300
+	When Player Car decides that they do not want it
 	Then Coventry Street remains unowned
 
     Scenario: A player lands on a property that is unowned but cannot afford it
-	Given Player 1 lands on an unowned property named Leicester Square
-	And Player 1 cannot afford it
+	Given Player Hat lands on an unowned property named Leicester Square
+	And Player Hat cannot afford it
 	Then their turn should end
 
     Scenario: A player lands on an owned property
-	Given Player 1 lands on an owned property
-	Then Player 1 should pay the cost of rent to the owner of the property
+	Given Player Dog lands on an owned property
+	Then Player Dog should pay the cost of rent to the owner of the property

@@ -5,9 +5,17 @@ import java.util.HashMap;
 public class Board {
 
   // Data Members
+<<<<<<< HEAD
   private ArrayList<Square> squares = new ArrayList<>();
   private HashMap<String, Square> squareMap = new HashMap<>();
 
+=======
+  ArrayList<Square> squares = new ArrayList<>();
+  HashMap<String, Square> squareMap = new HashMap<>();
+  int id;
+  String name; 
+	
+>>>>>>> f0bc8758f2707901096cf4290341faea856bf98c
   public enum Counters {
       DOG, SHIP, CAR, HAT, THIMBLE, BOOT        
   }

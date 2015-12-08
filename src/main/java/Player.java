@@ -3,9 +3,16 @@ public class Player {
   // Data Members
   private int money;
   //private String name;
+<<<<<<< HEAD
   private Board.Counters playerPiece;
   private Square position;
   private boolean jail;
+=======
+  Board.Counters playerPiece;
+  Square position;
+  int id;
+  boolean jail;
+>>>>>>> f0bc8758f2707901096cf4290341faea856bf98c
   private int doublesRolled;
     
   // Constructors
@@ -40,6 +47,20 @@ public class Player {
   
   public Square getPosition() {
     return position;
+  }
+  
+  public String getPlayerPiece(){
+    String str = "";
+    switch(this.playerPiece){
+	    case DOG: str= "Dog"; break;
+	    case SHIP: str=  "Ship"; break;
+	    case CAR: str=  "Car"; break;
+	    case HAT: str=  "Hat"; break;
+	    case THIMBLE: str=  "Thimble"; break;
+	    case BOOT: str=  "Boot"; break;
+	    default: str=  ""; break;
+    }
+    return str;
   }
 
 /*  public void setName(String newName) {
