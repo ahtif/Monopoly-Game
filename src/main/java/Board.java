@@ -7,7 +7,9 @@ public class Board {
   // Data Members
   ArrayList<Square> squares = new ArrayList<>();
   HashMap<String, Square> squareMap = new HashMap<>();
-
+  int id;
+  String name; 
+	
   public enum Counters {
       DOG, SHIP, CAR, HAT, THIMBLE, BOOT        
   }
