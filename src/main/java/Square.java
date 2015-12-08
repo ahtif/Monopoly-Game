@@ -23,5 +23,9 @@ public class Square {
   public int getLocation() {
     return location;
   }
+  
+  public String toString() {
+    return name;
+  }
 
 }// End of Square class

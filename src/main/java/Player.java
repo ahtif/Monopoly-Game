@@ -1,12 +1,11 @@
-//import BuyableSquare.java;
 public class Player {
 
   // Data Members
   private int money;
-  private String name;
-  private String playerPiece;
-  private int position;
-  private boolean jail;
+  //private String name;
+  Board.Counters playerPiece;
+  Square position;
+  boolean jail;
   private int doublesRolled;
     
   // Constructors
@@ -15,9 +14,9 @@ public class Player {
    */
   public Player() {
     money = 200;
-    name = "";
-    playerPiece = "";
-    position = 0;
+  //  name = "";
+    playerPiece = null;
+    position = null;
     jail = false;
     int doublesRolled = 0;
   }
@@ -25,31 +24,31 @@ public class Player {
   /**
    * Player Constructor with values.
    */
-  public Player(String name, String playerPiece) {
+  public Player(Board.Counters playerPiece) {
     money = 200;
-    this.name = name;
+  //  this.name = name;
     this.playerPiece = playerPiece;
-    position = 0;
+    position = null;
     jail = false;
     int doublesRolled = 0;
   }
 
   // Instance methods
-  public void setPosition(int newPosition) {
+  public void setPosition(Square newPosition) {
     position = newPosition;
   }
   
-  public int getPosition() {
+  public Square getPosition() {
     return position;
   }
 
-  public void setName(String newName) {
+/*  public void setName(String newName) {
     this.name = newName;
   }
 
   public String getName() {
     return name;
-  }
+  }*/
 
   public int getMoney() {
     return money;
@@ -68,7 +67,6 @@ public class Player {
   }
 
   public void passGo() {
-    // Assume passGo will give 200.
     money += 200;
   }
 
@@ -131,23 +129,23 @@ public class Player {
   /**
    * Dice Rolling.
    */
-  public void move(int dice1, int dice2) {
+ /* public void move(int dice1, int dice2) {
     if (dice1 == dice2) {
       doublesRolled++;
     } else {
       doublesRolled = 0;
     }
 
-    if (doublesRolled == 3) {
+    if (doublesRolled == 3) {*/
       // add code below to set the position of the player to jail's position.
       // .
       // position = /*jail position*/;
-
+/*
       jail = true;
     } else {
       position += dice1 + dice2;
     }
   }
-
+*/
 
 }// End of Player class

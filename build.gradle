@@ -18,17 +18,6 @@ repositories {
     jcenter()
 }
 
-task cucumber() {
-    dependsOn assemble, compileTestJava
-    doLast {
-        javaexec {
-            main = 'cucumber.api.cli.Main'
-            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
-            args = ['--plugin', 'pretty', '--glue', 'javatests', 'src/test/resources']
-        }
-    }
-}
-
 // In this section you declare the dependencies for your production and test code
 dependencies {
     // The production code uses the SLF4J logging API at compile time
@@ -44,7 +33,6 @@ dependencies {
     testCompile('junit:junit:4.11')    
 }
 
- 
 configurations {
     checkstyleConfig
     cucumberRuntime {
@@ -52,6 +40,17 @@ configurations {
     }
 }
 
+task cucumber() {
+    dependsOn assemble, compileTestJava
+    doLast {
+        javaexec {
+            main = 'cucumber.api.cli.Main'
+            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+            args = ['--plugin', 'pretty', '--glue', '', 'src/test/resources']
+        }
+    }
+}
+ 
 checkstyle {
     toolVersion = "6.1.1"
     configFile = "./config/checkstyle/google_checks.xml" as File
