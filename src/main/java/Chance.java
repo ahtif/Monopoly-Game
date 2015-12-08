@@ -1,6 +1,6 @@
 public class Chance extends Square {
   
-  int amount;
+  private int amount;
 
   // Constructor
   public Chance(String name, int location, int amount) {
