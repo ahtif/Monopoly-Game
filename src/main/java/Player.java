@@ -45,16 +45,16 @@ public class Player {
     return position;
   }
   
-  public String getPlayerPiece(){
+  public String getPlayerPiece() { 
     String str = "";
-    switch(this.playerPiece){
-	    case DOG: str= "Dog"; break;
-	    case SHIP: str=  "Ship"; break;
-	    case CAR: str=  "Car"; break;
-	    case HAT: str=  "Hat"; break;
-	    case THIMBLE: str=  "Thimble"; break;
-	    case BOOT: str=  "Boot"; break;
-	    default: str=  ""; break;
+    switch (this.playerPiece) {
+      case DOG: str = "Dog"; break;
+      case SHIP: str =  "Ship"; break;
+      case CAR: str =  "Car"; break;
+      case HAT: str =  "Hat"; break;
+      case THIMBLE: str =  "Thimble"; break;
+      case BOOT: str =  "Boot"; break;
+      default: str =  ""; break;
     }
     return str;
   }
@@ -99,8 +99,12 @@ public class Player {
     //return; //temporary to allow for program to compile
   }
 
-  public boolean purchaseSquare(/*BuyableSquares square*/) {
-    return false; //temporary
+  public boolean purchaseSquare(BuyableSquare square) {
+    if (square.getOwner() == null) {
+    square.setOwner(this, position);
+    return true;
+    }
+    else return false; 
   }
 
   /**
