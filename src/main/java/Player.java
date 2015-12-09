@@ -1,18 +1,30 @@
+import java.util.ArrayList;
+
 public class Player {
 
   // Data Members
   private int money;
-  //private String name;
-
   Board.Counters playerPiece;
-  private Square position;
+  Square position;
   boolean jail;
   int id;
-  int turnsInJail;
-
+  ArrayList<BuyableSquare> purchasedSquare = new ArrayList<>();
   int doublesRolled;
-    
+  int turnsInJail;
+ 
   // Constructors
+  /**
+   * Argumentless constructor.
+   */
+  public Player() {
+    money = 200;
+    playerPiece = null;
+    position = null;
+    jail = false;
+    int doublesRolled = 0;
+    turnsInJail = 0;
+  }
+  
   /**
    * Player Constructor with values.
    */
@@ -22,7 +34,7 @@ public class Player {
     position = null;
     jail = false;
     doublesRolled = 0;
-    
+    turnsInJail = 0;
   }
 
   // Instance methods
@@ -33,7 +45,10 @@ public class Player {
   public Square getPosition() {
     return position;
   }
-
+  
+  public void setPlayerPiece(String piece) {
+    this.playerPiece = Board.Counters.valueOf(piece.toUpperCase());
+  }
   /**
    *Get Player Piece.
    */
@@ -87,8 +102,8 @@ public class Player {
     doublesRolled = amount;
   }
   
-  public void /*switch void later with: BuyableSquares[]*/ getProperties() {
-    //return; //temporary to allow for program to compile
+  public ArrayList getProperties() {
+    return purchasedSquare;
   }
 
   /**
@@ -97,6 +112,7 @@ public class Player {
   public boolean purchaseSquare(BuyableSquare square) {
     if (square.getOwner() == null) {
       square.setOwner(this);
+      purchasedSquare.add(square);
       return true;
     } else {
       return false;

@@ -8,8 +8,8 @@ public class Board {
 
   private ArrayList<Square> squares = new ArrayList<>();
   private HashMap<String, Square> squareMap = new HashMap<>();
-  int id;
-  String name; 
+  public int id;
+  public String name; 
 
   public enum Counters {
       DOG, SHIP, CAR, HAT, THIMBLE, BOOT        
@@ -71,6 +71,14 @@ public class Board {
     return squareMap.get(name);
   }
   
+  /**
+   *Square by index.
+  */
+  public Square getSquareByIndex(int index) {
+    Square location = this.squares.get(index);
+    //s is the square to be returned
+    return location;
+  }
   
   /**
    * This gets the destination of the new square.
