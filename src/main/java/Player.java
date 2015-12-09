@@ -7,7 +7,7 @@ public class Player {
   //private String name;
 
   public Board.Counters playerPiece;
-  private Square position;
+  public Square position;
   public boolean jail;
   int id;
   private ArrayList<BuyableSquare> purchasedSquare = new ArrayList<>();
@@ -46,7 +46,10 @@ public class Player {
   public Square getPosition() {
     return position;
   }
-
+  
+  public void setPlayerPiece(String piece) {
+    this.playerPiece = Board.Counters.valueOf(piece.toUpperCase());
+  }
   /**
    *Get Player Piece.
    */
