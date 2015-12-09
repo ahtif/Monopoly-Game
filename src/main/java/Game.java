@@ -30,8 +30,7 @@ public class Game {
     
     if (player.jail) {
       if (die1 == die2 || player.turnsInJail == 3) {
-        player.setJail(false); 
-        player.turnsInJail = 0;
+        player.leaveJail();
       } else {
         player.turnsInJail++;
         return;

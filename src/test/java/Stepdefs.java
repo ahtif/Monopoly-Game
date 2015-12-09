@@ -149,8 +149,7 @@ public class Stepdefs {
   @When("^Player (.*) wants to leave Jail early$")
   public void player_Ship_wants_to_leave_jail_early(String playerName) throws Throwable {
     Player player = testGame.getPlayer(Board.Counters.valueOf(playerName.toUpperCase()));
-    player.setJail(false);
-    player.subtractMoney(50);
+    player.leaveJail();
   }
 
   @Then("^Player (.*) should have (\\d+)$")

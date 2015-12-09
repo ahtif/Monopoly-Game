@@ -86,14 +86,16 @@ Feature: Movements
 			And Player Dog is in Jail
 		
     Scenario: A player has been in jail for 3 turns
-	Given Player Boot started on the Jail square
-	And Player Boot is Jailed
-	When Player Boot rolls a 4 and a 5
-		And Player Boot rolls a 2 and a 3
-		And Player Boot rolls a 1 and a 2 
-		And Player Boot rolls a 2 and a 4
-	Then Player Boot should be on Bow Street 
-		And Player Boot is not in Jail
+		Given Player Boot started on the Jail square
+			And Player Boot is Jailed
+			And Player Boot has 600
+		When Player Boot rolls a 4 and a 5
+			And Player Boot rolls a 2 and a 3
+			And Player Boot rolls a 1 and a 2 
+			And Player Boot rolls a 2 and a 4
+		Then Player Boot should be on Bow Street 
+			And Player Boot should have 550
+			And Player Boot is not in Jail
 
     Scenario: A player lands on a property that is unowned
 	Given Player Car lands on an unowned property named Coventry Street

@@ -66,14 +66,6 @@ public class Player {
     return str;
   }
 
-/*  public void setName(String newName) {
-    this.name = newName;
-  }
-
-  public String getName() {
-    return name;
-  }*/
-
   public int getMoney() {
     return money;
   }
@@ -131,23 +123,23 @@ public class Player {
   /**
    * Jail Time Remaining.
    */
-  public void remainingJailTime() {
-    // N.B. Not quite clear about what to do in this method.
+  public int remainingJailTime() {
+    return 3 - turnsInJail;
   }
 
-  /**
-   * Jail check.
-   */
   public boolean jailCheck() {
     return jail;
   }
   
-  /**
-   * Set Jail.
-   */
+
   public void setJail(boolean toggle) {
     jail = toggle;
   }
+  
+  public void leaveJail() {
+    setJail(false);
+    subtractMoney(50);
+  }  
   
   /**
    * Trade Property.
@@ -159,26 +151,7 @@ public class Player {
   public void sellProperty(Property property, int moneyOffered, Player receiver) {
       
   }
-  /**
-   * Dice Rolling.
-   */
- /* public void move(int dice1, int dice2) {
-    if (dice1 == dice2) {
-      doublesRolled++;
-    } else {
-      doublesRolled = 0;
-    }
 
-    if (doublesRolled == 3) {*/
-      // add code below to set the position of the player to jail's position.
-      // .
-      // position = /*jail position*/;
-/*
-      jail = true;
-    } else {
-      position += dice1 + dice2;
-    }
-  }
-*/
+
 
 }// End of Player class
