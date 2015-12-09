@@ -45,6 +45,9 @@ public class Player {
     return position;
   }
   
+  /**
+   *returns players piece in string format
+   */
   public String getPlayerPiece() { 
     String str = "";
     switch (this.playerPiece) {
@@ -99,12 +102,15 @@ public class Player {
     //return; //temporary to allow for program to compile
   }
 
+  /**
+   *purchase square
+   */
   public boolean purchaseSquare(BuyableSquare square) {
-    if (square.getOwner() == null) {
-    square.setOwner(this, position);
-    return true;
-    }
-    else return false; 
+      if (square.getOwner() == null) {
+      square.setOwner(this, position);
+      return true; }
+      else {
+      return false; }
   }
 
   /**
