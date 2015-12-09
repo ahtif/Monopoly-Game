@@ -4,36 +4,25 @@ public class Player {
   private int money;
   //private String name;
 
-  public Board.Counters playerPiece;
+  Board.Counters playerPiece;
   private Square position;
-  public boolean jail;
+  boolean jail;
   int id;
+  int turnsInJail;
 
-  private int doublesRolled;
+  int doublesRolled;
     
   // Constructors
-  /**
-   * Player Constructor.
-   */
-  public Player() {
-    money = 200;
-  //  name = "";
-    playerPiece = null;
-    position = null;
-    jail = false;
-    int doublesRolled = 0;
-  }
-
   /**
    * Player Constructor with values.
    */
   public Player(Board.Counters playerPiece) {
     money = 200;
-  //  this.name = name;
     this.playerPiece = playerPiece;
     position = null;
     jail = false;
-    int doublesRolled = 0;
+    doublesRolled = 0;
+    
   }
 
   // Instance methods
