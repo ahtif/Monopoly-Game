@@ -100,9 +100,6 @@ public class Player {
     doublesRolled = amount;
   }
   
-  /**
-   *Properties
-   */
   public ArrayList getProperties() {
     return purchasedSquare;
   }
