@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Player {
 
   // Data Members
@@ -8,7 +10,7 @@ public class Player {
   private Square position;
   public boolean jail;
   int id;
-
+  private ArrayList<BuyableSquare> purchasedSquare = new ArrayList<>();
   private int doublesRolled;
     
   // Constructors
@@ -98,8 +100,8 @@ public class Player {
     doublesRolled = amount;
   }
   
-  public void /*switch void later with: BuyableSquares[]*/ getProperties() {
-    //return; //temporary to allow for program to compile
+  public ArrayList getProperties() {
+    return purchasedSquare;
   }
 
   /**
@@ -108,6 +110,7 @@ public class Player {
   public boolean purchaseSquare(BuyableSquare square) {
     if (square.getOwner() == null) {
       square.setOwner(this);
+      purchasedSquare.add(square);
       return true;
     } else {
       return false;
