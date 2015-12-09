@@ -3,10 +3,12 @@ public class Player {
   // Data Members
   private int money;
   //private String name;
-  Board.Counters playerPiece;
-  Square position;
+
+  public Board.Counters playerPiece;
+  private Square position;
+  public boolean jail;
   int id;
-  boolean jail;
+
   private int doublesRolled;
     
   // Constructors
@@ -42,17 +44,20 @@ public class Player {
   public Square getPosition() {
     return position;
   }
-  
-  public String getPlayerPiece(){
+
+  /**
+   *Get Player Piece.
+   */
+  public String getPlayerPiece() { 
     String str = "";
-    switch(this.playerPiece){
-	    case DOG: str= "Dog"; break;
-	    case SHIP: str=  "Ship"; break;
-	    case CAR: str=  "Car"; break;
-	    case HAT: str=  "Hat"; break;
-	    case THIMBLE: str=  "Thimble"; break;
-	    case BOOT: str=  "Boot"; break;
-	    default: str=  ""; break;
+    switch (this.playerPiece) {
+      case DOG: str = "Dog"; break;
+      case SHIP: str =  "Ship"; break;
+      case CAR: str =  "Car"; break;
+      case HAT: str =  "Hat"; break;
+      case THIMBLE: str =  "Thimble"; break;
+      case BOOT: str =  "Boot"; break;
+      default: str =  ""; break;
     }
     return str;
   }
@@ -97,8 +102,17 @@ public class Player {
     //return; //temporary to allow for program to compile
   }
 
-  public boolean purchaseSquare(/*BuyableSquares square*/) {
-    return false; //temporary
+  /**
+   *Purchase square.
+   */
+  public boolean purchaseSquare(BuyableSquare square) {
+    if (square.getOwner() == null) {
+      square.setOwner(this, position);
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 
   /**
