@@ -109,8 +109,7 @@ public class Player {
     if (square.getOwner() == null) {
       square.setOwner(this);
       return true;
-    }
-    else {
+    } else {
       return false;
     }
   }
