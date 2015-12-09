@@ -7,7 +7,8 @@ public class BuyableSquare extends Square{
   protected int multiplier;
   protected int mortgagePrice;
   protected String owner;
-  protected Square propertyLocation;
+  //protected Square propertyLocation;
+
     
   /**  
    * Constructor for buyable square.
@@ -32,9 +33,8 @@ public class BuyableSquare extends Square{
   // Instance methods
   
   //needs to check if player has enough money 
-  public void setOwner(Player player, Square square) {
+  public void setOwner(Player player) {
     owner = player.getPlayerPiece();
-    propertyLocation = square;
   }
 
   public String getOwner() {

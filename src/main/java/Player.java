@@ -44,9 +44,9 @@ public class Player {
   public Square getPosition() {
     return position;
   }
-  
+
   /**
-   *returns players piece in string format
+   *Get Player Piece.
    */
   public String getPlayerPiece() { 
     String str = "";
@@ -103,14 +103,15 @@ public class Player {
   }
 
   /**
-   *purchase square
+   *Purchase square.
    */
   public boolean purchaseSquare(BuyableSquare square) {
-      if (square.getOwner() == null) {
-      square.setOwner(this, position);
-      return true; }
-      else {
-      return false; }
+    if (square.getOwner() == null) {
+      square.setOwner(this);
+      return true;
+    } else {
+      return false;
+    }
   }
 
   /**
