@@ -66,7 +66,7 @@ public class Stepdefs {
   public void player_should_be_on(String playerName, String squareName) throws Throwable {
     Player player = testGame.getPlayer(Board.Counters.valueOf(playerName.toUpperCase()));  
     Square square = testGame.board.getSquareByName(squareName);
-    assertEquals(player.position, square);
+    assertEquals(player.getPosition(), square);
   }  
   
   @Then("^Player (.*) is in Jail$")

@@ -107,7 +107,7 @@ public class Player {
    */
   public boolean purchaseSquare(BuyableSquare square) {
     if (square.getOwner() == null) {
-      square.setOwner(this, position);
+      square.setOwner(this);
       return true;
     }
     else {

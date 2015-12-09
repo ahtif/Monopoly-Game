@@ -7,7 +7,7 @@ public class BuyableSquare extends Square{
   protected int multiplier;
   protected int mortgagePrice;
   protected String owner;
-
+  //protected Square propertyLocation;
     
   /**  
    * Constructor for buyable square.
@@ -26,7 +26,7 @@ public class BuyableSquare extends Square{
     this.rent = rent;
     this.multiplier = multiplier;
     this.mortgagePrice = mortgagePrice;
-    owner = "";
+    owner = null;
   }
 
   // Instance methods

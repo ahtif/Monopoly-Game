@@ -25,7 +25,7 @@ public class Game {
   public void peformActionsAfterDiceRoll(Player player, int die1, int die2) {
 
     Square locationToMoveplayerTo = 
-        this.board.getDestinationSquare(player.position, die1 + die2);
+        this.board.getDestinationSquare(player.getPosition(), die1 + die2);
 
       // Is there a teleport happening.
     if (locationToMoveplayerTo == this.board.getSquareByName("Go To Jail")) {
