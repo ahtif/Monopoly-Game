@@ -8,6 +8,7 @@ public class BuyableSquare extends Square{
   protected int mortgagePrice;
   protected String owner;
   //protected Square propertyLocation;
+
     
   /**  
    * Constructor for buyable square.

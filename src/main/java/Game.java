@@ -30,7 +30,7 @@ public class Game {
       // Is there a teleport happening.
     if (locationToMoveplayerTo == this.board.getSquareByName("Go To Jail")) {
       locationToMoveplayerTo = this.board.getSquareByName("Jail");
-      player.jail = true;
+      player.setJail(true);
     }
     
     player.setPosition(locationToMoveplayerTo);

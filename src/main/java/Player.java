@@ -112,7 +112,6 @@ public class Player {
     } else {
       return false;
     }
-  }
 
   /**
    * Rent paying.
