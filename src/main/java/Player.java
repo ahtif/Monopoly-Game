@@ -101,7 +101,7 @@ public class Player {
   }
   
   /**
-   *Get Properties
+   *Properties
    */
   public ArrayList getProperties() {
     return purchasedSquare;
