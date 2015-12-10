@@ -17,7 +17,7 @@ public class Stepdefs {
 
   Game testGame;
 
-  private MonopolyDao persistence = new MonopolyDao();
+ // private MonopolyDao persistence = new MonopolyDao();
 
 
   /** 
@@ -26,6 +26,7 @@ public class Stepdefs {
   @Before 
   public void beforeScenario() {
     testGame = new Game();
+    testGame.name = "test-game-1";
   //  testGame.players.put(1, new Player(1, testBoard.square.get(0)));
    // testGame.players.put(2, new Player(2, testBoard.square.get(0)));
 //   persistence.persistGame(testGame);
@@ -615,7 +616,7 @@ public class Stepdefs {
     Player player1 = testGame.players.get(playerNumber);
     player1.setPosition(26);
   }
-+
+
   @Then("^Player (\\d+) should pay rent to player (\\d+)$")
   public void player_should_lose_money_to_player 
   (int playerNumber1, int playerNumber2) throws Throwable {
@@ -706,7 +707,7 @@ public class Stepdefs {
     regent_street.addHouse(1);
     assertEquals(regent_street.getNumOfHouses(), 5);
   }
-+
+
 //////////////////////////////////////////////////////////////////////////////////
   //check if owner changes in mortgage
   @Given("^player (\\d+) lands on Mayfair(\\d+)$")
