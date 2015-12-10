@@ -1,95 +1,120 @@
 Feature: Movements
 
-    Scenario: Dice roll
-	Given Player 1 rolls two dice
-	When Player 1 rolls a 3 and a 5
-	Then Player 1 should move 8 squares
-
-    Scenario: A player rolls a 6
-    Given Player 1 started on the Go square
-	When a 6 is rolled
-	Then Player 1 should be on Oxford Street
+    Scenario: A player can make a single move
+   		Given Player Boot started on the Bow Street square
+		When Player Boot rolls a 2 and a 1
+		Then Player Boot should be on Vine Street
 
     Scenario: A player rolls doubles
-	Given Player 2 started on the Go square
-	When Player 2 rolls a 3 and a 3
-	Then Player 2 should end up on Oxford Street
-	And it should be Player 2s turn again
+		Given Player Thimble started on the Go square
+		When Player Thimble rolls a 2 and a 2
+    		And Player Thimble rolls a 1 and a 3
+    	Then Player Thimble should be on Chance1
+   
+	Scenario: A player lands on the Go To Jail square
+		Given Player Car started on the Fleet Street square
+        When Player Car rolls a 5 and a 2
+        Then Player Car should be on Jail
+        	And Player Car is in Jail
+        	
+    Scenario: A player passes Go
+		Given Player Hat started on the Park Lane square
+		When Player Hat rolls a 2 and a 3
+		Then Player Hat should be on Community Chest1
+			And Player Hat should gain 200 for passing Go
    
     Scenario: A player moves onto Jail but is not in Jail
-	Given Player 1 has not been sent to Jail
-	When PLayer 1 land on the Jail Square
-	Then Player 1 may leave on their next turn
+		Given Player Ship started on the Kings Cross Station square
+		When Player Ship rolls a 2 and a 3
+		Then Player Ship should be on Jail
+			And Player Ship is not in Jail
 
-    Scenario: A player passes Go
-	Given Player 2 starts their turn before the Go square
-	When Player 2 lands on the Go square
-	Then Player 2 collect 200
+    Scenario: Players can take turns to move
+        Given Player Car started on the Go square
+          And Player Hat started on the Go square
+        When Player Car rolls a 2 and a 4
+        And Player Hat rolls a 1 and a 3
+        Then Player Car should be on Kings Cross Station
+         And Player Hat should be on Whitechapel Road    
 
-    Scenario: A player lands on the Go To Jail square
-    Given Player 1 lands on the Go To Jail square
-	Then Player 1 should move directly to the Jail Square
-	And Player 1 should not collect 200
-
-    Scenario: A player lands on a chance square
-	Given PLayer 1 is on Old Kent Road
-	When Player 1 rolls a 3 
-	And land on a chance square
-	Then Player 1 gains 100
-
-    Scenario: A player lands on a community chest square
-	Given Player 1 is on Whitechapel Road
-	When Player 1 rolls an 8
-	And lands on a Community Chest
-	Then Player 1 should gain 50
+    Scenario: A player lands on a chance square and gains money
+		Given Player Dog started on the Old Kent Road square
+		When Player Dog rolls a 1 and a 5
+		Then Player Dog should be on Chance1
+			And Player Dog should gain 100 for landing on Chance1
+			
+	Scenario: A player lands on a chance square and loses money
+		Given Player Thimble started on the Marylebone Station square
+		When Player Thimble rolls a 2 and a 5
+		Then Player Thimble should be on Chance2
+			And Player Thimble should lose 100 for landing on Chance2
+			
+	Scenario: A player rolls 3 doubles
+		Given Player Car started on the Go square
+		When Player Car rolls a 1 and a 1
+    		And Player Car rolls a 2 and a 2
+    		And Player Car rolls a 3 and a 3
+    	Then Player Car should be on Jail
+    		And Player Car is in Jail	
+			
+    Scenario: A player lands on a community chest
+		Given Player Ship started on the Electric Company square
+		When Player Ship rolls a 3 and a 2
+		Then Player Ship should be on Community Chest2
+			And Player Ship should gain 50 for landing on Community Chest2
+			
+    Scenario: A player rolls doubles in jail
+		Given Player Dog started on the Jail square
+			And Player Dog is Jailed
+		When Player Dog rolls a 2 and a 2
+		Then Player Dog should be on Northumberland Avenue
+			And Player Dog is not in Jail
+			
+    Scenario: A player wishes to leave jail early
+		Given Player Ship started on the Jail square
+			And Player Ship is Jailed
+			And Player Ship has 500
+		When Player Ship wants to leave Jail early
+		Then Player Ship should have 450
+			And Player Ship is not in Jail
 
    Scenario: A player is in Jail for 1 turn
-	Given Player 1 is in jail and they have only rolled once
-	When Player 1 rolls
-	And the dice do not show the same number
-	Then Player 1 should remain in Jail
-
-    Scenario: A player rolls doubles in jail
-	Given Player 2 is in Jail
-	When Player 2 rolls doubles
-	Then Player 2 move the rolled number of squares
+		Given Player Dog started on the Jail square
+			And Player Dog is Jailed
+		When Player Dog rolls a 5 and a 2
+		Then Player Dog should be on Jail
+			And Player Dog is in Jail
 		
     Scenario: A player has been in jail for 3 turns
-	Given Player 1 has been in jail for 3 turns
-	And Player one has 1000
-	When player 1 rolls a 4 and a 5
-	Then Player 1 is on Old Kent Road 
-	And Player 1 loses 50 so they have 950 left
-
-    Scenario: A player wishes to leave jail early
-	Given Player 1 has been in jail less then three turns
-	And Player 1 has 100
-	When Player 1 wants to leave
-	Then Player 1 must lose 50 so they have 50
-
-    Scenario: A player has rolled doubles 3 times in a row
-	Given Player 1 rolls doubles 3 times in a row
-	Then Player 1 should go to jail
-	And Player 1 should not collect 200 pounds
+		Given Player Boot started on the Jail square
+			And Player Boot is Jailed
+			And Player Boot has 600
+		When Player Boot rolls a 4 and a 5
+			And Player Boot rolls a 2 and a 3
+			And Player Boot rolls a 1 and a 2 
+			And Player Boot rolls a 2 and a 4
+		Then Player Boot should be on Bow Street 
+			And Player Boot should have 550
+			And Player Boot is not in Jail
 
     Scenario: A player lands on a property that is unowned
-	Given Player 1 lands on an unowned property named Coventry Street
-	And Player 1 has 300
-	When player 1 decides to buy it
-	Then Player 1 has 243 left 
+	Given Player Car lands on an unowned property named Coventry Street
+	And Player Car has 300
+	When player Car decides to buy it
+	Then Player Car has 243 left 
 	And owns the property
 
     Scenario: A player lands on an unowned property but doesn't want it
     Given Player lands on an unowned property named Coverntry Street
-	And Player 1 has 300
-	When Player 1 decides that they do not want it
+	And Player Car has 300
+	When Player Car decides that they do not want it
 	Then Coventry Street remains unowned
 
     Scenario: A player lands on a property that is unowned but cannot afford it
-	Given Player 1 lands on an unowned property named Leicester Square
-	And Player 1 cannot afford it
+	Given Player Hat lands on an unowned property named Leicester Square
+	And Player Hat cannot afford it
 	Then their turn should end
 
     Scenario: A player lands on an owned property
-	Given Player 1 lands on an owned property
-	Then Player 1 should pay the cost of rent to the owner of the property
+	Given Player Dog lands on an owned property
+	Then Player Dog should pay the cost of rent to the owner of the property

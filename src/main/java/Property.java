@@ -33,7 +33,7 @@ public class Property extends BuyableSquare {
     }
   }
   
-  public void saleHouse(int amountOfHouses) {
+  public void sellHouse(int amountOfHouses) {
     numOfHouses -= amountOfHouses;
   }
 

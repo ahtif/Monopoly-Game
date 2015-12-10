@@ -1,54 +1,69 @@
-//import BuyableSquare.java;
+import java.util.ArrayList;
+
 public class Player {
 
   // Data Members
   private int money;
-  private String name;
-  private String playerPiece;
-  private int position;
-  private boolean jail;
-  private int doublesRolled;
-    
+  Board.Counters playerPiece;
+  Square position;
+  boolean jail;
+  int id;
+  ArrayList<BuyableSquare> purchasedSquare = new ArrayList<>();
+  int doublesRolled;
+  int turnsInJail;
+ 
   // Constructors
   /**
-   * Player Constructor.
+   * Argumentless constructor.
    */
   public Player() {
     money = 200;
-    name = "";
-    playerPiece = "";
-    position = 0;
+    playerPiece = null;
+    position = null;
     jail = false;
     int doublesRolled = 0;
+    turnsInJail = 0;
   }
-
+  
   /**
    * Player Constructor with values.
    */
-  public Player(String name, String playerPiece) {
+  public Player(Board.Counters playerPiece) {
     money = 200;
-    this.name = name;
     this.playerPiece = playerPiece;
-    position = 0;
+    position = null;
     jail = false;
-    int doublesRolled = 0;
+    doublesRolled = 0;
+    turnsInJail = 0;
   }
 
   // Instance methods
-  public void setPosition(int newPosition) {
+  public void setPosition(Square newPosition) {
     position = newPosition;
   }
   
-  public int getPosition() {
+  public Square getPosition() {
     return position;
   }
-
-  public void setName(String newName) {
-    this.name = newName;
+  
+  public void setPlayerPiece(String piece) {
+    this.playerPiece = Board.Counters.valueOf(piece.toUpperCase());
   }
-
-  public String getName() {
-    return name;
+  /**
+   *Get Player Piece.
+   */
+  public String getPlayerPiece() { 
+    String str = "";
+    switch (this.playerPiece) {
+      case DOG: str = "Dog"; break;
+      case SHIP: str =  "Ship"; break;
+      case CAR: str =  "Car"; break;
+      case HAT: str =  "Hat"; break;
+      case THIMBLE: str =  "Thimble"; break;
+      case BOOT: str =  "Boot"; break;
+      default: str =  ""; break;
+    }
+    return str;
   }
 
   public int getMoney() {
@@ -68,7 +83,6 @@ public class Player {
   }
 
   public void passGo() {
-    // Assume passGo will give 200.
     money += 200;
   }
 
@@ -80,12 +94,21 @@ public class Player {
     doublesRolled = amount;
   }
   
-  public void /*switch void later with: BuyableSquares[]*/ getProperties() {
-    //return; //temporary to allow for program to compile
+  public ArrayList getProperties() {
+    return purchasedSquare;
   }
 
-  public boolean purchaseSquare(/*BuyableSquares square*/) {
-    return false; //temporary
+  /**
+   *Purchase square.
+   */
+  public boolean purchaseSquare(BuyableSquare square) {
+    if (square.getOwner() == null) {
+      square.setOwner(this);
+      purchasedSquare.add(square);
+      return true;
+    } else {
+      return false;
+    }
   }
 
   /**
@@ -100,23 +123,23 @@ public class Player {
   /**
    * Jail Time Remaining.
    */
-  public void remainingJailTime() {
-    // N.B. Not quite clear about what to do in this method.
+  public int remainingJailTime() {
+    return 3 - turnsInJail;
   }
 
-  /**
-   * Jail check.
-   */
   public boolean jailCheck() {
     return jail;
   }
   
-  /**
-   * Set Jail.
-   */
+
   public void setJail(boolean toggle) {
     jail = toggle;
   }
+  
+  public void leaveJail() {
+    setJail(false);
+    subtractMoney(50);
+  }  
   
   /**
    * Trade Property.
@@ -128,26 +151,7 @@ public class Player {
   public void sellProperty(Property property, int moneyOffered, Player receiver) {
       
   }
-  /**
-   * Dice Rolling.
-   */
-  public void move(int dice1, int dice2) {
-    if (dice1 == dice2) {
-      doublesRolled++;
-    } else {
-      doublesRolled = 0;
-    }
 
-    if (doublesRolled == 3) {
-      // add code below to set the position of the player to jail's position.
-      // .
-      // position = /*jail position*/;
-
-      jail = true;
-    } else {
-      position += dice1 + dice2;
-    }
-  }
 
 
 }// End of Player class
