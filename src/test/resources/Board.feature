@@ -28,7 +28,6 @@ Feature: Movements
 		When Player Ship rolls a 2 and a 3
 		Then Player Ship should be on Jail
 			And Player Ship is not in Jail
-		
 
     Scenario: Players can take turns to move
         Given Player Car started on the Go square
@@ -49,41 +48,54 @@ Feature: Movements
 		When Player Thimble rolls a 2 and a 5
 		Then Player Thimble should be on Chance2
 			And Player Thimble should lose 100 for landing on Chance2
-
-    Scenario: A player lands on a community chest square
-	Given Player Ship is on Whitechapel Road
-	When Player Ship rolls an 8
-	And lands on a Community Chest
-	Then Player Ship should gain 50
+			
+	Scenario: A player rolls 3 doubles
+		Given Player Car started on the Go square
+		When Player Car rolls a 1 and a 1
+    		And Player Car rolls a 2 and a 2
+    		And Player Car rolls a 3 and a 3
+    	Then Player Car should be on Jail
+    		And Player Car is in Jail	
+			
+    Scenario: A player lands on a community chest
+		Given Player Ship started on the Electric Company square
+		When Player Ship rolls a 3 and a 2
+		Then Player Ship should be on Community Chest2
+			And Player Ship should gain 50 for landing on Community Chest2
+			
+    Scenario: A player rolls doubles in jail
+		Given Player Dog started on the Jail square
+			And Player Dog is Jailed
+		When Player Dog rolls a 2 and a 2
+		Then Player Dog should be on Northumberland Avenue
+			And Player Dog is not in Jail
+			
+    Scenario: A player wishes to leave jail early
+		Given Player Ship started on the Jail square
+			And Player Ship is Jailed
+			And Player Ship has 500
+		When Player Ship wants to leave Jail early
+		Then Player Ship should have 450
+			And Player Ship is not in Jail
 
    Scenario: A player is in Jail for 1 turn
-	Given Player Dog is in jail and they have only rolled once
-	When Player Dog rolls
-	And the dice does not show the same number
-	Then Player Dog should remain in Jail
-
-    Scenario: A player rolls doubles in jail
-	Given Player Dog is currently in Jail
-	When Player Dog rolls doubles
-	Then Player Dog move the rolled number of squares
+		Given Player Dog started on the Jail square
+			And Player Dog is Jailed
+		When Player Dog rolls a 5 and a 2
+		Then Player Dog should be on Jail
+			And Player Dog is in Jail
 		
     Scenario: A player has been in jail for 3 turns
-	Given Player Boot has been in jail for 3 turns
-	And Player Boot has 1000
-	When player Boot rolls a 4 and a 5
-	Then Player Boot is on Old Kent Road 
-	And Player Boot loses 50 so they have 950 left
-
-    Scenario: A player wishes to leave jail early
-	Given Player Ship has been in jail less then three turns
-	And Player Ship has 100
-	When Player Ship wants to leave
-	Then Player Ship must lose 50 so they have 50
-
-    Scenario: A player has rolled doubles 3 times in a row
-	Given Player Thimble rolls doubles 3 times in a row
-	Then Player Thimble should go to jail
-	And Player Thimble should not collect 200 pounds
+		Given Player Boot started on the Jail square
+			And Player Boot is Jailed
+			And Player Boot has 600
+		When Player Boot rolls a 4 and a 5
+			And Player Boot rolls a 2 and a 3
+			And Player Boot rolls a 1 and a 2 
+			And Player Boot rolls a 2 and a 4
+		Then Player Boot should be on Bow Street 
+			And Player Boot should have 550
+			And Player Boot is not in Jail
 
     Scenario: A player lands on a property that is unowned
 	Given Player Car lands on an unowned property named Coventry Street
