@@ -46,7 +46,8 @@ public class MonopolyDao {
       String updateGame = "UPDATE player SET piece = '" + player.getPlayerPiece() 
           + "', square = " + player.position.getLocation()
           + ", game = " + board.id 
-          + " where `id` = " + player.id;      
+          + ", money = " + player.getMoney()
+          + " where `id` = " + player.id;  
       Statement statement = connection.createStatement();
       statement.executeUpdate(updateGame);
     } catch (SQLException e) {
@@ -62,9 +63,9 @@ public class MonopolyDao {
   private void addPlayer(Player player, Board board) {
     
     try {
-      String insertPlayer = "INSERT INTO player (piece, square, game) values ('" 
+      String insertPlayer = "INSERT INTO player (piece, square, game, money) values ('" 
           + player.getPlayerPiece() + "', " + player.position.getLocation() 
-          +  ", " + board.id + ")";
+          +  ", " + board.id + "," + player.getMoney() + ")";
       
       Statement statement = connection.createStatement();
       statement.executeUpdate(insertPlayer, Statement.RETURN_GENERATED_KEYS);
@@ -99,6 +100,8 @@ public class MonopolyDao {
         player.setPlayerPiece(playerResults.getString("piece"));
         player.id = playerResults.getInt("id");
         player.setPosition(board.getSquareByIndex(playerResults.getInt("square")));
+        player.setMoney(playerResults.getInt("money"));
+        findPropertyByPlayer(player);
       }
       
     } catch (SQLException e) {  
@@ -161,14 +164,14 @@ public class MonopolyDao {
    */
   private void updateGame(Board board) {
     
-    // TODO: lots of update with add game - remove?
+
     try {
       String updateGame = "UPDATE game SET name = '" + board.name 
           + "' WHERE `id` = " + board.id;      
       Statement statement = connection.createStatement();
       statement.executeUpdate(updateGame);
       
-      // update the players (may require adding or updating - we don't know)
+
       
       
 
@@ -202,7 +205,97 @@ public class MonopolyDao {
       e.printStackTrace();
     }
   }
+  
+  /**
+   *Properties.
+   */
+  public void persistProperties(BuyableSquare square) {
+    if (square.id != 0) {
+      this.updateProperties(square);
+    } else {
+      this.addProperties(square);
+    }
+  }
+  
+  private void updateProperties(BuyableSquare square) {
+    try {
+      String updateProperties = "UPDATE properties SET player = '" + square.getOwner()
+          + ", property = " + square.getProperty()
+          + ", location = " + square.getLocation()
+          + ", cost = " + square.getPrice()
+          + ", rent = " + square.getRent()
+          + ", multiplier = " + square.getMultiplier()
+          + ", mortgage = " + square.getMortgage()
+          + "' WHERE `id` = " + square.id;      
+      Statement statement = connection.createStatement();
+      statement.executeUpdate(updateProperties);
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
+  
+  private void addProperties(BuyableSquare square) {
+    
+    try {
+      String insertProperties = "INSERT INTO properties ( player, property, location,"
+           + "cost, rent, multiplier, mortgage)"
+           + "values ('" 
+           + square.getOwner() 
+           + "," + square.getProperty() 
+           + "," + square.getLocation()
+           + "," + square.getPrice()
+           + "," + square.getRent()
+           + "," + square.getMultiplier()
+           + "," + square.getMortgage() + "')";
+      Statement statement = connection.createStatement();
+      statement.executeUpdate(insertProperties, Statement.RETURN_GENERATED_KEYS);
+      ResultSet keys = statement.getGeneratedKeys();
+      
+      while (keys.next()) {  
+        square.id = keys.getInt(1);
+      } 
+      keys.close();
+      
+      this.updateProperties(square);
+      
+      
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
+  /**
+   *Find player properties.
+   */
+  public BuyableSquare findPropertyByPlayer(Player player) {
+    
+    BuyableSquare result = null;
+    
+    try {
+      
+      String selectProperty = "SELECT property FROM properties WHERE player ='" 
+          + player.getPlayerPiece() + "'";
+      
+      Statement statement = connection.createStatement();
+      ResultSet propertiesResults = statement.executeQuery(selectProperty);
+      
+      while (propertiesResults.next()) {
 
+        result = new BuyableSquare( propertiesResults.getString("property"),
+               propertiesResults.getInt("location"),
+               propertiesResults.getInt("cost"),
+               propertiesResults.getInt("rent"),
+               propertiesResults.getInt("multiplier"),
+               propertiesResults.getInt("mortgage"));
+        result.setOwner(player);
+      }
+      
+    } catch (SQLException e) {  
+      e.printStackTrace();
+    }
+    
+    return result;
+  }
+  
   /**
    * Delete a game from the database.s
    * @param testBoard The board to delete

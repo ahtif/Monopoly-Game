@@ -97,24 +97,3 @@ Feature: Movements
 			And Player Boot should have 550
 			And Player Boot is not in Jail
 
-    Scenario: A player lands on a property that is unowned
-	Given Player Car lands on an unowned property named Coventry Street
-	And Player Car has 300
-	When player Car decides to buy it
-	Then Player Car has 243 left 
-	And owns the property
-
-    Scenario: A player lands on an unowned property but doesn't want it
-    Given Player lands on an unowned property named Coverntry Street
-	And Player Car has 300
-	When Player Car decides that they do not want it
-	Then Coventry Street remains unowned
-
-    Scenario: A player lands on a property that is unowned but cannot afford it
-	Given Player Hat lands on an unowned property named Leicester Square
-	And Player Hat cannot afford it
-	Then their turn should end
-
-    Scenario: A player lands on an owned property
-	Given Player Dog lands on an owned property
-	Then Player Dog should pay the cost of rent to the owner of the property

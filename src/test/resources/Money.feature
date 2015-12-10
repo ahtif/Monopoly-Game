@@ -1,4 +1,5 @@
 Feature: Things dealing with  money
+
     Scenario: A player lands on an owned property
     	Given Player Boot started on the Go square
 			And Player Boot owns Old Kent Road
