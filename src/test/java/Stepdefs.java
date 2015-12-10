@@ -17,7 +17,7 @@ public class Stepdefs {
 
   Game testGame;
 
-  private MonopolyDao persistence = new MonopolyDao();
+  //private MonopolyDao persistence = new MonopolyDao();
 
 
   /** 
@@ -878,6 +878,34 @@ public class Stepdefs {
   //remove for testing 
    
    */
+  @Given("^Player (.*) owns (.*)$")
+  public void player_owns(String playerName, String property) throws Throwable {
+	  Player player = testGame.getPlayer(Board.Counters.valueOf(playerName.toUpperCase()));
+	  Property p = (Property) testGame.board.getSquareByName(property);
+	  p.setOwner(player);
+  }
+  @Then("^Player (.*) owes (\\d+) rent to Player (.*)$")
+  public void player_Car_owes_rent_to_Player_Boot(String playerName1,int fee,String playerName2) throws Throwable {
+    Player player = testGame.getPlayer(Board.Counters.valueOf(playerName1.toUpperCase()));
+    Player player2 = testGame.getPlayer(Board.Counters.valueOf(playerName2.toUpperCase()));
+    player2.addMoney(fee);
+    player.subtractMoney(fee);
+    assertNotEquals(player.getMoney(), player2.getMoney()); 
+		  
+  }
+
+
+
+  @Given("^Player (.*) has a house on (.*)$")
+  public void player_has_a_house_on(String playerName, String property) throws Throwable {
+      // Write code here that turns the phrase above into concrete actions
+      throw new PendingException();
+  }
+
+ 
+
+
+
    
 }
 
