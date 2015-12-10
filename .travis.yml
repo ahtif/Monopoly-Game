@@ -11,7 +11,7 @@ before_install:
 before_script:
 - ./gradlew createDatabase
 
--jdk:
+jdk:
  - oraclejdk7
  - openjdk7
  
