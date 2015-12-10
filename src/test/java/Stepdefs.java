@@ -17,6 +17,8 @@ public class Stepdefs {
 
   Game testGame;
 
+  private MonopolyDao persistence = new MonopolyDao();
+
 
   /** 
    * Always executed before any step definition.
@@ -160,7 +162,58 @@ public class Stepdefs {
 
   
 /* 
+  
+  // Tests for persistence 
+  @Given("^we are having a game of monopoly$")
+  public void we_are_having_a_game_of_monopoly() throws Throwable {
+    this.testGame = new Game;
+}
 
+  @Given("^a player join the game as (.+)$")
+  public void a_player_join_the_game_as(String playerName) throws Throwable {
+    Player player  = new Player(Board.Counters.valueOf(playerName.toUpperCase()));
+   
+}
+
+// saves initial game 
+  @When("^we save the game as (.+)$")
+  public void we_save_the_game_as(String saveGameName) throws Throwable {
+    testGame.Board.name = saveGameName;
+    persistence.persistGame(board);
+}
+
+  @Then("^the board has an id$")
+  public void the_board_has_an_id() throws Throwable {
+    assertTrue(board.id != 0);
+}
+
+// load a saved game
+  @Given("^we load the saved game (.+)$")
+  public void we_load_the_saved_game(String gameName) throws Throwable {
+    testGame.Board.name = persistence.findGameByName(gameNameame);
+}
+
+// Saves a game, loads another game, the loads the first game 
+  @Given("^Player (.+) rolls a (\\d+) and a (\\d+)$")
+  public void player_rolls(String playerName, int dice1, int dice2) throws Throwable {
+    Player player = testGame.getPlayer(Board.Counters.valueOf(playerName.toUpperCase()));
+    testGame.peformActionsAfterDiceRoll(player, dice1, dice2);
+}
+
+  @Given("^we save the game as (.+)$")
+  public void we_save_the_game_as(String saveGameName) throws Throwable {
+    testGame.Board.name = saveGameName;
+    persistence.persistGame(testGame);
+}
+
+  @When("^we load the saved game (.+)$")
+  public void we_load_the_saved_gameString gameName) throws Throwable {
+    testGame.Board = persistence.findGameByName(gameNameame);
+}
+
+  
+  
+  //////////////////////////////////////////////////////////////////////////////////
   @When("^a (\\d+) and a (\\d+) are rolled and are the same number$")
   public void double_is_rolled(int dice1, int dice2) throws Throwable {
     Player player = testGame.players.get(playerNumber);

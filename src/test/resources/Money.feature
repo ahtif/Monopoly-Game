@@ -1,15 +1,23 @@
 Feature: Things dealing with  money
 /*	
     Scenario: A player lands on an owned property
-	Given Player 1 owns Old Kent Road
-    And Player 2 lands on Old Kent Road
-    Then Player 2 owes Player 1 2 pound
+		Given Player Boot owns Old Kent Road
+			And Player Car is on Park Lane square
+			And Player Car has 200 pound
+			And Player Boot has 200 pound
+    	When Player Car rolls a 2 and a 2
+    	Then Player Car should be on Old Kent Road
+    		And Player Car owes Player Boot 2 pound
 	
     Scenario: A player lands on a property with a house
-	Given Player 1 has a house on Old Kent Road	
-	When Player 2 lands on Old Kent Road  property
-	Then Player 2 should pay 10 to Player 1
-
+    	Given Player Car has a house on Old Kent Road
+    		And Player Boot is on Park Lane square
+    		And Player Car has 200 pound
+			And Player Boot has 200 pound
+    	When Player Boot rolls a 2 and a 2
+    	Then Player Boot should be on Old Kent Road
+    		And Player Boot owes Player Car 10 pound
+    		
 	#Scenario: A player buys a house
 		#Given a player ownes all three properties of a single color
 	#When they have enough money for a house
@@ -25,26 +33,26 @@ Feature: Things dealing with  money
 	#Then they must mortgage their property in order to pay to owner
 
 	#Scenario: A player lands on property and cannot afford rent and cannot mortgage anything
-		#Given Player 1 cannot mortgage any properties
-	#When Player 1 cannot aford rent of 100
+		#Given Player Boot cannot mortgage any properties
+	#When Player Boot cannot aford rent of 100
 	#Then they must give all of their money to the owner of the property
 	#And the player becomes bankrupt
 
 	#Scenario: Two players wish to trade properties
-		#Given player 1 owns Leicester Square 
-	#And player 2 owns Pall Mall
+		#Given player Boot owns Leicester Square 
+	#And player Car owns Pall Mall
 	#And both players wish to trade properties
-	#Then player 1 now owns Pall Mall and player 2 now owns Leicester Square
+	#Then player Boot now owns Pall Mall and player Car now owns Leicester Square
 
 	#Scenario: A owned property is bought off another player
-		#Given Player 1 owns Bond Street
-	#When Player 2 wishes to buy it for 300
-	#And Player 1 agrees
-	#Then Player 2 owns Bond Street and Player 1 gains 300 
+		#Given Player Boot owns Bond Street
+	#When Player Car wishes to buy it for 300
+	#And Player Boot agrees
+	#Then Player Car owns Bond Street and Player Boot gains 300 
 
 	#Scenario: A player goes bankrupt and his properties are up for grabs
-		#Given Player 1 goes bankrupt
-	#Then the remaining players may bid on Player 1's properties
+		#Given Player Boot goes bankrupt
+	#Then the remaining players may bid on Player Boot properties
 
 	#Scenario: A bankrupt player's property goes unbought
 		#Given Picadilly is able to be bid on
@@ -53,7 +61,7 @@ Feature: Things dealing with  money
 
 	#Scenario: A bankrupt player's property is bought
 		#Given Picadilly is able to be bid on
-	#When Player 1 bids £400
+	#When Player Boot bids £400
 	#And no other player wishes to pay that much
-	#Then Player 1 loses £400
-	#And Player 1 now ownes Picadilly
+	#Then Player Boot loses £400
+	#And Player Boot now ownes Picadilly
