@@ -7,7 +7,9 @@ public class BuyableSquare extends Square{
   protected int multiplier;
   protected int mortgagePrice;
   protected String owner;
-  //protected Square propertyLocation;
+  int id;
+  protected String propertyName;
+  protected int propertyLocation;
 
     
   /**  
@@ -23,6 +25,8 @@ public class BuyableSquare extends Square{
   public BuyableSquare(String name, int location, int cost, int rent,
       int multiplier, int mortgagePrice) {
     super(name, location);
+    propertyName = name;
+    propertyLocation = location;
     this.cost = cost;
     this.rent = rent;
     this.multiplier = multiplier;
@@ -36,11 +40,15 @@ public class BuyableSquare extends Square{
   public void setOwner(Player player) {
     owner = player.getPlayerPiece();
   }
-
+  
   public String getOwner() {
     return "owner";  /* Insert real name*/
   }
-
+  
+  public String getProperty() {
+    return propertyName;
+  }
+  
   public void setPrice(int price) {
     cost = price;
   }
@@ -57,6 +65,13 @@ public class BuyableSquare extends Square{
     return mortgagePrice;
   }
   
+  public int getMultiplier() {
+    return multiplier;
+  }
+  
+  public int getLocation() {
+    return propertyLocation;
+  }
   /**
    * addMoneyMortgage Square.
    */

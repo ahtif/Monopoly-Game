@@ -17,7 +17,7 @@ public class Stepdefs {
 
   Game testGame;
 
- // private MonopolyDao persistence = new MonopolyDao();
+  private MonopolyDao persistence = new MonopolyDao();
 
 
   /** 
