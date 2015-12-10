@@ -1,5 +1,4 @@
 language: java
-
 script:
 - ./gradlew -i check
 - ./gradlew jar
@@ -12,9 +11,8 @@ before_script:
 - ./gradlew createDatabase
 
 jdk:
- - oraclejdk7
- - openjdk7
+- oraclejdk7
+- openjdk7
  
- services:
-  - mysql
-
+services:
+- mysql
