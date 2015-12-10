@@ -17,7 +17,7 @@ public class Stepdefs {
 
   Game testGame;
 
-  private MonopolyDao persistence = new MonopolyDao();
+  //private MonopolyDao persistence = new MonopolyDao();
 
 
   /** 
@@ -247,12 +247,6 @@ public class Stepdefs {
     assertEquals(doubles, 1); // check that doubles has increased from 0 to 1
   }
 
-//////////////////////////////////////////////////////////////////////////////////
- // check visit jail
-  @Given("^Player (\\d+) has not been sent to Jail$")
-  public void player_has_not_been_sent_to_Jail(int playerNumber) throws Throwable {
-    Player player = testGame.players.get(playerNumber);
-  }
 
   @When("^Player (\\d+) land on the Jail Square$")
   public void player_land_on_the_Jail_Square(int arg1) throws Throwable {
@@ -372,15 +366,7 @@ public class Stepdefs {
     assertNotEquals(player.getMoney(), old_money);
   }
 
-//////////////////////////////////////////////////////////////////////////////////
- 
-  //TODO need remaining jail time to be figured out 
-  
-  @Given("^Player (\\d+) is in jail and they have only rolled once$")
-  public void player_is_in_jail_and_they_have_only_rolled_once(int playerNumber) throws Throwable {
-    Player player = testGame.players.get(playerNumber);
-    
-  }
+
 
   @When("^Player (\\d+) rolls$")
   public void player_rolls(int arg1) throws Throwable {
@@ -879,7 +865,33 @@ public class Stepdefs {
   //remove for testing 
    
    */
-   
+  /**
+   * sets the player to own a property.
+   * @param playerName player name.
+   * @param property property name.
+   */
+  @Given("^Player (.*) owns (.*)$")
+  public void player_owns(String playerName, String property) throws Throwable {
+    Player player = testGame.getPlayer(Board.Counters.valueOf(playerName.toUpperCase()));
+    Property prop = (Property) testGame.board.getSquareByName(property);
+    prop.setOwner(player);
+  }
+  
+  /**
+   * Player pays rent to another player.
+   * @param playerName1 first player.
+   * @param fee amount owed.
+   * @param playerName2 second player.
+   */
+  @Then("^Player (.*) owes (\\d+) rent to Player (.*)$")
+  public void player_owes_rent(String playerName1,int fee,String playerName2) throws Throwable {
+    Player player = testGame.getPlayer(Board.Counters.valueOf(playerName1.toUpperCase()));
+    Player player2 = testGame.getPlayer(Board.Counters.valueOf(playerName2.toUpperCase()));
+    player2.addMoney(fee);
+    player.subtractMoney(fee);
+    assertNotEquals(player.getMoney(), player2.getMoney());   
+  }
+  
 }
 
 
