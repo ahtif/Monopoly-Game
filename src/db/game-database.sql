@@ -13,5 +13,6 @@ CREATE TABLE player (
     piece VARCHAR(30) NOT NULL,
     square INT NOT NULL,
     game INT NOT NULL,
+    money INT NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY(game) REFERENCES game(id) ON DELETE CASCADE);
