@@ -1,15 +1,23 @@
 Feature: Things dealing with  money
 /*	
     Scenario: A player lands on an owned property
-	Given Player Boot owns Old Kent Road
-    And Player Car lands on Old Kent Road
-    Then Player Car owes Player Boot 2 pound
+		Given Player Boot owns Old Kent Road
+			And Player Car is on Park Lane square
+			And Player Car has 200 pound
+			And Player Boot has 200 pound
+    	When Player Car rolls a 2 and a 2
+    	Then Player Car should be on Old Kent Road
+    		And Player Car owes Player Boot 2 pound
 	
     Scenario: A player lands on a property with a house
-	Given Player Car has a house on Old Kent Road	
-	When Player Boot lands on Old Kent Road  property
-	Then Player Car should pay 10 to Player Boot
-
+    	Given Player Car has a house on Old Kent Road
+    		And Player Boot is on Park Lane square
+    		And Player Car has 200 pound
+			And Player Boot has 200 pound
+    	When Player Boot rolls a 2 and a 2
+    	Then Player Boot should be on Old Kent Road
+    		And Player Boot owes Player Car 10 pound
+    		
 	#Scenario: A player buys a house
 		#Given a player ownes all three properties of a single color
 	#When they have enough money for a house
