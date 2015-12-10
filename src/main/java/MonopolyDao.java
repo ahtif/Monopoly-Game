@@ -46,7 +46,8 @@ public class MonopolyDao {
       String updateGame = "UPDATE player SET piece = '" + player.getPlayerPiece() 
           + "', square = " + player.position.getLocation()
           + ", game = " + board.id 
-          + " where `id` = " + player.id;      
+          + ", money = " + player.getMoney()
+          + " where `id` = " + player.id;  
       Statement statement = connection.createStatement();
       statement.executeUpdate(updateGame);
     } catch (SQLException e) {
@@ -62,9 +63,9 @@ public class MonopolyDao {
   private void addPlayer(Player player, Board board) {
     
     try {
-      String insertPlayer = "INSERT INTO player (piece, square, game) values ('" 
+      String insertPlayer = "INSERT INTO player (piece, square, game, money) values ('" 
           + player.getPlayerPiece() + "', " + player.position.getLocation() 
-          +  ", " + board.id + ")";
+          +  ", " + board.id + "," + player.getMoney() + ")";
       
       Statement statement = connection.createStatement();
       statement.executeUpdate(insertPlayer, Statement.RETURN_GENERATED_KEYS);
@@ -99,6 +100,7 @@ public class MonopolyDao {
         player.setPlayerPiece(playerResults.getString("piece"));
         player.id = playerResults.getInt("id");
         player.setPosition(board.getSquareByIndex(playerResults.getInt("square")));
+        player.setMoney(playerResults.getInt("money"));
       }
       
     } catch (SQLException e) {  
