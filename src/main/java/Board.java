@@ -22,7 +22,7 @@ public class Board {
   public Board() {
     this.addSquare(new Square("GO",0));
     this.addSquare(new Property("Old Kent Road",1,60,2,2,50,"brown"));
-    this.addSquare(new CommunityChest("Community Chest1",2));
+    this.addSquare(new CommunityChest("Community Chest1",2,200));
     this.addSquare(new Property("Whitechapel Road",3,60,4,2,50,"brown"));
     this.addSquare(new Square("Income Tax",4));
     this.addSquare(new RailRoad("Kings Cross Station",5,200,25,2,100));
@@ -37,7 +37,7 @@ public class Board {
     this.addSquare(new Property("Northumberland Avenue",14,160,12,2,80,"pink"));
     this.addSquare(new RailRoad("Marylebone Station",15,200,25,2,100));
     this.addSquare(new Property("Bow Street",16,180,14,2,90,"orange"));
-    this.addSquare(new CommunityChest("Community Chest2",17));
+    this.addSquare(new CommunityChest("Community Chest2",17,50));
     this.addSquare(new Property("Marlborough Street",18,180,14,2,90,"orange"));
     this.addSquare(new Property("Vine Street",19,200,16,2,100,"orange"));
     this.addSquare(new Square("Free Parking",20));
@@ -53,7 +53,7 @@ public class Board {
     this.addSquare(new GoToJail("Go To Jail",30));
     this.addSquare(new Property("Regent Street",31,300,26,2,200,"green"));
     this.addSquare(new Property("Oxford Street",32,300,26,2,200,"green"));
-    this.addSquare(new CommunityChest("Community Chest3",33));
+    this.addSquare(new CommunityChest("Community Chest3",33,300));
     this.addSquare(new Property("Bond Street",34,320,28,2,200,"green"));
     this.addSquare(new RailRoad("Liverpool St Station",35,200,25,2,100));
     this.addSquare(new Chance("Chance3",36,200));

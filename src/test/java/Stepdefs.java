@@ -17,6 +17,8 @@ public class Stepdefs {
 
   Game testGame;
 
+  private MonopolyDao persistence = new MonopolyDao();
+
 
   /** 
    * Always executed before any step definition.
@@ -98,14 +100,20 @@ public class Stepdefs {
    * Checks the player gains the correct amount for landing on a chance.
    * @param playerName The player's name.
    * @param amt Amount to gain.
-   * @param chanceSquare The chance square to land on.
+   * @param squareName The chance square to land on.
    */
   @Then("^Player (.*) should gain (\\d+) for landing on (.*)$")
-  public void gain_on_chance(String playerName, int amt, String chanceSquare) throws Throwable {
+  public void gain_on_chance(String playerName, int amt, String squareName) throws Throwable {
     Player player = testGame.getPlayer(Board.Counters.valueOf(playerName.toUpperCase()));  
     int oldMoney = player.getMoney();
-    Chance chance = (Chance) testGame.board.getSquareByName(chanceSquare);
-    player.addMoney(chance.getAmount());
+    Square square = testGame.board.getSquareByName(squareName);
+    if (square.getName().startsWith("Chance")) {
+      Chance chance = (Chance) testGame.board.getSquareByName(squareName);
+      player.addMoney(chance.getAmount());
+    } else {
+      CommunityChest chest = (CommunityChest) square;
+      player.addMoney(chest.getReward());
+    }
     assertEquals(oldMoney + amt, player.getMoney()); 
   } 
   
@@ -124,8 +132,88 @@ public class Stepdefs {
     assertEquals(oldMoney - amt, player.getMoney()); 
   }   
   
-/* 
+  @Given("^Player (.*) is Jailed$")
+  public void player_is_Jailed(String playerName) throws Throwable {
+    Player player = testGame.getPlayer(Board.Counters.valueOf(playerName.toUpperCase()));
+    player.setJail(true);
+  }
 
+  @Given("^Player (.*) has (\\d+)$")
+  public void player_has(String playerName,int amt) throws Throwable {
+    Player player = testGame.getPlayer(Board.Counters.valueOf(playerName.toUpperCase()));
+    player.setMoney(amt);
+  }
+  
+  /**
+   * Set a player free from jail and subtracts £50.
+   * @param playerName the name of the player
+   */
+  @When("^Player (.*) wants to leave Jail early$")
+  public void player_Ship_wants_to_leave_jail_early(String playerName) throws Throwable {
+    Player player = testGame.getPlayer(Board.Counters.valueOf(playerName.toUpperCase()));
+    player.leaveJail();
+  }
+
+  @Then("^Player (.*) should have (\\d+)$")
+  public void player_Ship_should_have(String playerName,int amt) throws Throwable {
+    Player player = testGame.getPlayer(Board.Counters.valueOf(playerName.toUpperCase()));
+    assertEquals(player.getMoney(),amt);
+  }
+
+  
+/* 
+  
+  // Tests for persistence 
+  @Given("^we are having a game of monopoly$")
+  public void we_are_having_a_game_of_monopoly() throws Throwable {
+    this.testGame = new Game;
+}
+
+  @Given("^a player join the game as (.+)$")
+  public void a_player_join_the_game_as(String playerName) throws Throwable {
+    Player player  = new Player(Board.Counters.valueOf(playerName.toUpperCase()));
+   
+}
+
+// saves initial game 
+  @When("^we save the game as (.+)$")
+  public void we_save_the_game_as(String saveGameName) throws Throwable {
+    testGame.Board.name = saveGameName;
+    persistence.persistGame(board);
+}
+
+  @Then("^the board has an id$")
+  public void the_board_has_an_id() throws Throwable {
+    assertTrue(board.id != 0);
+}
+
+// load a saved game
+  @Given("^we load the saved game (.+)$")
+  public void we_load_the_saved_game(String gameName) throws Throwable {
+    testGame.Board.name = persistence.findGameByName(gameNameame);
+}
+
+// Saves a game, loads another game, the loads the first game 
+  @Given("^Player (.+) rolls a (\\d+) and a (\\d+)$")
+  public void player_rolls(String playerName, int dice1, int dice2) throws Throwable {
+    Player player = testGame.getPlayer(Board.Counters.valueOf(playerName.toUpperCase()));
+    testGame.peformActionsAfterDiceRoll(player, dice1, dice2);
+}
+
+  @Given("^we save the game as (.+)$")
+  public void we_save_the_game_as(String saveGameName) throws Throwable {
+    testGame.Board.name = saveGameName;
+	persistence.persistGame(testGame);
+}
+
+  @When("^we load the saved game (.+)$")
+  public void we_load_the_saved_gameString gameName) throws Throwable {
+    testGame.Board = persistence.findGameByName(gameNameame);
+}
+
+  
+  
+  //////////////////////////////////////////////////////////////////////////////////
   @When("^a (\\d+) and a (\\d+) are rolled and are the same number$")
   public void double_is_rolled(int dice1, int dice2) throws Throwable {
     Player player = testGame.players.get(playerNumber);
@@ -346,11 +434,6 @@ public class Stepdefs {
     throw new PendingException();
   }
 
-  @Given("^Player one has £(\\d+)$")
-  public void player_one_has(int arg1) throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
-    throw new PendingException();
-  }
 
   @When("^player (\\d+) rolls a (\\d+) and a (\\d+)$")
   public void player_rolls_a_and_a(int arg1, int arg2, int arg3) throws Throwable {
