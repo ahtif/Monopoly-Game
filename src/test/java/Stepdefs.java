@@ -203,7 +203,7 @@ public class Stepdefs {
   @Given("^we save the game as (.+)$")
   public void we_save_the_game_as(String saveGameName) throws Throwable {
     testGame.Board.name = saveGameName;
-	persistence.persistGame(testGame);
+    persistence.persistGame(testGame);
 }
 
   @When("^we load the saved game (.+)$")
